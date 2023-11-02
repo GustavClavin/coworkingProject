@@ -1,0 +1,52 @@
+.heroHome{
+  background-image: url('https://i.imgur.com/boCVQgT.jpg');
+  background-size: cover; 
+  background-repeat: no-repeat;
+  width: 1732px;
+  height: 800px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 3rem;
+  h1{
+    color: $lightest-grey;
+    text-align: center;
+    font-size: 180px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    opacity: 0.8;
+    position: relative;
+    span{
+        z-index: 100;
+        color: $darkest-grey;
+        bottom: 30px;
+        right: 10px;
+        font-size: 64px;
+        position: absolute;
+        mix-blend-mode: initial;
+    }
+  }
+  .sloganContainer{
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 2rem;
+    width: fit-content;
+    padding: 1rem 10rem;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    position: absolute;
+    bottom: -3.5rem;
+    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.08);
+    .thumb{
+      color: $yellow;
+      font-size: 62px;
+      padding-bottom: .5rem;
+    }
+    
+  }
+}

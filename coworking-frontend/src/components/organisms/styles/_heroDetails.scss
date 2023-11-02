@@ -1,0 +1,34 @@
+.heroDetails{
+    display: flex;
+    gap: 8px;
+    padding-top: 10rem;
+    
+    
+    .smallGroup {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 1fr;
+        gap: .5rem;
+        width: 30rem;
+        height: 30rem;
+        img{
+            object-fit: cover;
+            height: 100%;
+            width: 100%; 
+        }
+        .item2{
+            border-radius: 0 5rem 0 0 ;
+        }
+      }
+    .mainImage{
+        width: 60rem;
+        height: 30rem;
+        
+        img{
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            border-radius: 0 0 0 5rem;
+        }
+    }
+}

@@ -1,0 +1,97 @@
+$black: #000000;
+$darkest-grey: #272727;
+$dark-grey: #3f3f3f;
+$grey: #616161;
+$light-grey: #848484;
+$line-grey: #d2d2d2;
+$lightest-grey: #f3f3f3;
+$white: #ffffff;
+
+$green: #28a745;
+$red: #a72828;
+$beige: #f5eee8;
+$yellow: #ffc703;
+$blue: #27b2bb;
+
+$gradient: linear-gradient(0deg, rgba(55, 55, 55, 0.00) 0%, rgba(55, 55, 55, 0.00) 100%), linear-gradient(180deg, #FFF 48.85%, rgba(255, 255, 255, 0.25) 100%);
+
+
+h1{
+    font-size: 80px;
+    color: $dark-grey;
+}
+
+h2{
+    font-size: 36px;
+    color: $dark-grey;
+}
+
+.h2Rajhadi{
+    font-size: 28px;
+    font-weight: bold;
+    color: $dark-grey;
+    font-family: Rajdhani;
+    span{
+        font-weight: 400;
+    }
+}
+
+h3{
+    font-size: 56px;
+    color: $dark-grey;
+}
+
+p{
+    font-size: 24px;
+    color: $grey;
+}
+
+.pRajhadi{
+    font-size: 28px;
+    color: $grey;
+    font-family: Rajdhani;
+}
+
+.bannerText{
+    font-size: 64px;
+    font-weight: bolder;
+}
+
+.xs{
+    font-size: 16px;
+    color: $light-grey;
+}
+
+.bold{
+    font-weight: bold;
+    color: $dark-grey;
+}
+
+.italic{
+    color: $light-grey;
+    font-style: italic;
+}
+
+.blue{
+    color: $blue;
+}
+.yellow{
+    color: $yellow;
+}
+.green{
+    color: $green;
+    background-color: $green;
+}
+.red{
+    color: $red;
+    background-color: $red;
+}
+.white{
+    color: $white;
+}
+.lightGrey{
+    color: $light-grey;
+}
+.gradient{
+    background: $gradient;
+}

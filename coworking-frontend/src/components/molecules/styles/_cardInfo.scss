@@ -1,0 +1,38 @@
+.cardInfo{
+    background: $gradient;
+    border-radius: 0 2rem 0 2rem;
+    padding: 1rem;
+    margin-bottom: .5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    width: 432px;
+    .cardTitles{
+        padding-left: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1rem;
+        .cardArea{
+            display: flex;
+            align-items: center;
+            color: $grey;
+            gap: .5rem;
+            :first-child{
+                margin-bottom: .2rem;
+            }
+        }
+    }
+    
+}
+.cardBottomDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .cardFacilities{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: .5rem;
+    }
+}

@@ -1,0 +1,9 @@
+.ratingCard{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: fit-content;
+    background-color: $white;
+    border-radius: 0 .75rem 0 .75rem;
+    padding: 0.3rem 1rem;
+}

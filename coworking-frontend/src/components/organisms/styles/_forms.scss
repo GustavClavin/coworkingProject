@@ -1,0 +1,21 @@
+form{
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    align-self: center;
+    padding: 4rem 16rem;
+    
+    p, h1, span, button{
+        text-align: center;
+        margin-top: 2rem;
+    }
+    
+    p{
+        text-decoration: underline;
+    }
+    .error{
+        text-decoration: none;
+        color: $red;
+    }
+    
+}
