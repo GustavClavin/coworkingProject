@@ -1,0 +1,42 @@
+.checkout{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 3rem 0;
+    
+    section{
+        display: flex;
+        flex-direction: column;
+        width: 40%;
+    }
+    .totalPrice{
+        display: flex;
+        justify-content: space-between;
+    }
+    .paymentOptions{
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        *{
+            height: 100%;
+        }
+        .option{
+            padding: 1rem;
+            font-size: 4rem;
+            
+        }
+        .separator{
+            border: 1px solid $lightest-grey;
+            height: 100%;
+        }
+        .visaMastercard{
+            width: fit-content;
+            display: flex;
+            
+        }
+        .selected{
+            border: 3px solid $green;
+            border-radius: 1rem;
+        }
+    }
+}

@@ -65,7 +65,7 @@ const RegisterForm = (props: Props) => {
           <InputField onChange={handleRepeatPasswordChange} id="repeatPasswordInput" label="Repeat Password:" type="password"></InputField>
           <p onClick={props.toggle} >Already have an account? <br />
              Login here here!</p>
-          <MainButton btnText="Register" type="submit" color="green"></MainButton>
+          <MainButton btnText="Register" type="submit" color="greenbg"></MainButton>
         </form>
       </>
     )

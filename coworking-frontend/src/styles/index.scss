@@ -1,5 +1,6 @@
 @import './variables';
 
+
 @import '../components/atoms/styles/button';
 @import '../components/atoms/styles/FacilityComponent';
 @import '../components/atoms/styles/pricingCard';
@@ -7,6 +8,8 @@
 @import '../components/atoms/styles/input';
 
 @import '../components/molecules/styles/cardInfo';
+@import '../components/molecules/styles/coworkGeneralInfo';
+@import '../components/molecules/styles/checkoutCalendar';
 
 @import '../components/organisms/styles/navbar';
 @import '../components/organisms/styles/heroHome';
@@ -16,6 +19,7 @@
 @import '../components/organisms/styles/map';
 @import '../components/organisms/styles/forms';
 @import '../components/organisms/styles/footerContent';
+@import '../components/organisms/styles/checkout';
 
 @import '../components/templates/styles/footer';
 @import '../components/templates/styles/cardSection';

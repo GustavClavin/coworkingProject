@@ -11,7 +11,6 @@ const Map = (props: Props) => {
     })
     
     const center = useMemo(() => ({lat: props.lat, lng: props.lng}), [])
-    console.log(center)
     if (!isLoaded) return (
         <>
             <h1>LOADING.....</h1>

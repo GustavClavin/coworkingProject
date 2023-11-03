@@ -4,6 +4,7 @@ import RegistrationForm from "../organisms/RegisterForm"
 import { useUser } from "../../utils/contexts/UserContext"
 import { XIcon } from "../atoms/Icons"
 import { useModal } from "../../utils/contexts/ModalContext"
+import Checkout from "../organisms/Checkout"
 
 
 
@@ -21,7 +22,7 @@ const Modal = () => {
   let modalContent: JSX.Element | null = null;
 
   if (user.user?.token && isOrdering) {
-    modalContent = <h1>Checkout</h1>;
+    modalContent = <Checkout />
   } else if (!user.user?.token && !showRegistration) {
     modalContent = <LoginForm toggle={toggleFormType} />;
   } else if (!user.user?.token && showRegistration) {
@@ -33,7 +34,6 @@ const Modal = () => {
   }
 
   const handleClick = () => {
-
     closeModal()
     user.clearError()
   }

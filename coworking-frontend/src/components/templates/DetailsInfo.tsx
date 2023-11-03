@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Map from "../organisms/Map"
 import { Cowork, Review } from "../../utils/types/interfaces"
-import { CreditCardIcon, EmailIcon, FoodIcon, MedalIcon, PinIcon, ReviewIcon, StarIcon } from "../atoms/Icons"
-import FacilityComponent from "../atoms/FacilityComponent"
+import { CreditCardIcon, ReviewIcon, StarIcon } from "../atoms/Icons"
+
 import MainButton from "../atoms/MainButton"
 import Pricing from "../organisms/Pricing"
 import { useCowork } from "../../utils/contexts/CoworkContext"
+import CoworkGeneralInfo from "../molecules/CoworkGeneralInfo"
+import { useModal } from "../../utils/contexts/ModalContext"
 
 
 interface Props {
@@ -14,6 +16,7 @@ interface Props {
 }
 const DetailsInfo = (props: Props) => {
     const {reviews} = useCowork()
+    const { isOrdering, startOrder, openModal } = useModal()
     
     const stars = reviews.slice(0, 2).map((review, i) => {
         const yellowStars: JSX.Element[] = Array.from({ length: review.rating }, (_, i) => {
@@ -38,22 +41,18 @@ const DetailsInfo = (props: Props) => {
         )
     })
 
+    const handleClick = async () => {
+        startOrder()
+        openModal()
+    }
+    
   return (
     <> 
     <section className="detailsMain">
         <div className="detailsGeneral">
             <div className="detailsGeneralText">
                 <h1>{props.cowork.name}</h1>
-                <p className="xs"><PinIcon /> {props.cowork.address}</p>
-                <p className="xs"><EmailIcon /> {props.cowork.email}</p>
-                <ul className="facilityList">
-                    {props.cowork.facilities.map((facility) => (
-                        <li key={String(facility._id)+String(facility.facility)} className="facility+name">
-                            <FacilityComponent facility={facility}/>
-                            <p className="pRajhadi xs">{facility.facility}</p>
-                        </li>
-                    ))}
-                </ul>
+                <CoworkGeneralInfo cowork={props.cowork}/>
                 <p className="detailsDescription">{props.cowork.description}</p>
             </div>
             
@@ -66,7 +65,7 @@ const DetailsInfo = (props: Props) => {
                     <Pricing color="lightGrey" key={String(price.interval) + String(price.price)} price={price} />
                 ))}
             </div>
-            <MainButton color="green" btnText="Book now!" type="button" />
+            <MainButton onClick={handleClick}  color="greenbg" btnText="Book now!" type="button" />
             <h2 className="lightGrey asideHeading">Reviews<ReviewIcon /></h2>
             <div className="reviews ">
                 <article>

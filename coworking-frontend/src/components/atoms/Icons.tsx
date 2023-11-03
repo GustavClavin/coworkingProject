@@ -50,11 +50,11 @@ const MedalIcon = () => { return (<FontAwesomeIcon icon={faMedal} />) }
 
 const ThumbIcon = () => { return (<FontAwesomeIcon icon={faThumbsUp} />) }
 
-const VisaIcon = () => { return (<FontAwesomeIcon icon={faCcVisa} />) }
+const VisaIcon = () => { return (<FontAwesomeIcon icon={faCcVisa} style={{color: "#1434CB",}} />) }
 
-const MastercardIcon = () => { return (<FontAwesomeIcon icon={faCcMastercard} />) }
+const MastercardIcon = () => { return (<FontAwesomeIcon icon={faCcMastercard} style={{color: "#EB001B",}} />) }
 
-const PaypalIcon = () => { return (<FontAwesomeIcon icon={faCcPaypal} />) }
+const PaypalIcon = () => { return (<FontAwesomeIcon icon={faCcPaypal} style={{color: "#0079c1",}} />) }
   
   export {StarIcon, MenuIcon, HouseIcon, PenIcon, CreditCardIcon, PinIcon, 
           UserIcon, LogoutIcon, EmailIcon, FoodIcon, GymIcon, CoffeeIcon, 

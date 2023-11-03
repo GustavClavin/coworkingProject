@@ -18,7 +18,6 @@ const Details = () => {
 
     useEffect(() => {
       if(slug){
-        console.log(slug)
         const getDetails = async () => {
           const details = await getOne(slug)
           await getReviews

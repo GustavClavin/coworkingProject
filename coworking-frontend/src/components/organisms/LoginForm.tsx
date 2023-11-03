@@ -66,7 +66,7 @@ const LoginForm = (props: Props) => {
         <InputField onChange={handlePasswordChange} id="passwordInput" label="Password:" type="password"></InputField>
         <p onClick={props.toggle}>Don't have an account yet? <br />
            Register here!</p>
-        <MainButton btnText="Login" type="submit" color="green"></MainButton>
+        <MainButton btnText="Login" type="submit" color="greenbg"></MainButton>
       </form>
     </>
   )
