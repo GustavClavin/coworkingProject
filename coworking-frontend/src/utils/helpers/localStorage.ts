@@ -1,4 +1,4 @@
-import { Credentials } from "../types/interfaces";
+import { Credentials } from "../types/types";
 const bcrypt = require('bcryptjs')
 
 const USER_STORAGE_KEY = '@LS_WOWORKING_USER';
@@ -13,5 +13,6 @@ export const saveUserLocalStorage = async (credentials: Credentials) => {
 
 export const getUserLocalStorage = async () => {
     const hashedUser = localStorage.getItem(USER_STORAGE_KEY)
+    
     return hashedUser ? JSON.parse(hashedUser) : null
 }

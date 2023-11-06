@@ -1,4 +1,4 @@
-import { IMGURL } from "../../utils/types/interfaces";
+import { IMGURL } from "../../utils/types/types";
 import { MouseEvent, MouseEventHandler, useState } from "react";
 
 interface Props {

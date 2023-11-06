@@ -1,5 +1,5 @@
 import { createContext, PropsWithChildren, useContext, useState } from "react"
-import { Cowork, Review } from "../types/interfaces"
+import { Cowork, Review } from "../types/types"
 import { getCoworkBySlug, getCoworks, _getReviews} from "../helpers/apiCalls"
 
 interface CoworkContextType {
@@ -66,7 +66,7 @@ const CoworkProvider = ({ children }: PropsWithChildren) => {
         setError('')
     }
 
-    return(
+    return (
         <CoworkContext.Provider value={{ coworks, coworkBySlug, reviews, error, getAll, getOne, getReviews, clearError}}>
             {children}
         </CoworkContext.Provider>

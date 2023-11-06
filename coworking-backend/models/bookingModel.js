@@ -3,14 +3,15 @@ const Booking  = require('../schemas/bookingSchema')
 const auth = require('../auth/auth')
 
 exports.createBooking = async (req, res) => {
-    const {cowork, paymentMethod, priceTotal, status} = req.body
-    if(!cowork || !paymentMethod || !priceTotal || !status){
+    const {cowork, paymentMethod, priceTotal, startDate, endDate, status} = req.body
+    if(!cowork || !paymentMethod || !priceTotal || !startDate || !endDate){
         return res.status(400).json({
-            message: 'A booking must contain Cowork, PaymentMethod, PriceTotal and Status'
+            message: 'A booking must contain cowork._id, paymentMethod, priceTotal, status'
         })
     }
+    const createdAt = new Date
     const userId = req.userId
-    const booking = await Booking.create({user: userId, cowork, paymentMethod, priceTotal, status})
+    const booking = await Booking.create({user: userId, cowork, paymentMethod, priceTotal, startDate, endDate, status, createdAt})
     if(!booking){
         return res.status(500).json({
             message: 'Something went wrong when creating the booking'

@@ -1,4 +1,4 @@
-import { Facility } from "../../utils/types/interfaces"
+import { Facility } from "../../utils/types/types"
 import React, { useEffect, useState } from "react"
 import Banner from "../organisms/Banner"
 import { getFacilities } from "../../utils/helpers/apiCalls"
@@ -36,7 +36,7 @@ const Footer = ()  => {
 
     return (
       <footer>
-        <Banner direction="right" img="https://i.imgur.com/BehvuaT.png" text={<p className="bannerText">Tired of <span className="yellow">working in the jungle?</span> Enjoy our fast wifi!</p>}/>
+        <Banner direction="right" text={<p className="bannerText">Tired of <span className="yellow">working in the jungle?</span> Enjoy our fast wifi!</p>}/>
         {apiCalled && (
           <FooterContent facilities={facilities} />
         )}

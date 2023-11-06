@@ -2,15 +2,19 @@
     display: flex;
     gap: 8px;
     padding-top: 10rem;
-    
+    width: 100%;
+    max-width: 90vw;
+    justify-content: center;
+    overflow: hidden;
     
     .smallGroup {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-auto-rows: 1fr;
         gap: .5rem;
-        width: 30rem;
-        height: 30rem;
+        max-width: 30rem;
+        aspect-ratio: 1;
+        overflow: hidden;
         img{
             object-fit: cover;
             height: 100%;
@@ -21,14 +25,43 @@
         }
       }
     .mainImage{
-        width: 60rem;
-        height: 30rem;
-        
+        max-width: 60rem;
+        aspect-ratio: 2;
+        overflow: hidden;
         img{
             object-fit: cover;
             width: 100%;
             height: 100%;
             border-radius: 0 0 0 5rem;
+            overflow: hidden;
+        }
+    }
+}
+
+@media screen and (max-width: 1070px) {
+    .heroDetails{
+        flex-wrap: wrap;
+        gap: 0;
+        .smallGroup{
+            display: flex;
+            justify-content: space-between;
+            max-width: 90vw;
+            aspect-ratio: 6;
+            
+            .item1{
+                border-bottom-left-radius: 3rem;
+            }
+            .item2{
+                border-radius: 0;
+            }
+        }
+        .mainImage{
+            width: 90vw;
+            padding-bottom: 8px;
+            img{
+                
+                border-radius: 0 3rem 0 0;
+            }
         }
     }
 }

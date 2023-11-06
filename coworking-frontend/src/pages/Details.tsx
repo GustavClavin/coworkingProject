@@ -4,7 +4,7 @@ import HeroDetails from "../components/organisms/HeroDetails";
 import Map from "../components/organisms/Map";
 import { useUser } from "../utils/contexts/UserContext";
 import { useCowork } from "../utils/contexts/CoworkContext";
-import { Cowork } from "../utils/types/interfaces";
+import { Cowork } from "../utils/types/types";
 import DetailsInfo from "../components/templates/DetailsInfo";
 
 

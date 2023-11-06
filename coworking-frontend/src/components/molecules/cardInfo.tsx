@@ -1,5 +1,5 @@
 
-import { Cowork } from "../../utils/types/interfaces"
+import { Cowork } from "../../utils/types/types"
 import FacilityComponent from '../atoms/FacilityComponent'
 import { PinIcon } from "../atoms/Icons"
 import PricingCard from '../atoms/PricingCard'

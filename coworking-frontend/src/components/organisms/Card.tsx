@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import RatingCard from "../atoms/RatingCard"
-import { Cowork } from "../../utils/types/interfaces"
+import { Cowork } from "../../utils/types/types"
 import CardInfo from "../molecules/cardInfo"
 
 

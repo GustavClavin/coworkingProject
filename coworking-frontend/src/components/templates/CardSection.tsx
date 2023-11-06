@@ -1,4 +1,4 @@
-import { Cowork } from "../../utils/types/interfaces"
+import { Cowork } from "../../utils/types/types"
 import Card from "../organisms/Card"
 
 

@@ -1,4 +1,5 @@
 import { ObjectId } from "mongoose"
+
 type BtnType = 'submit' | 'button' | 'reset'
 
 type Direction = 'up' | 'down' | 'left' | 'right'
@@ -9,15 +10,14 @@ type BookingStatus = 'pending' | 'active' | 'cancelled' | 'passed'
 
 type IMGURL = `${'https://'}${string}` | `${string}${'puplic/images/'}${string}`
 
-type Facility = {_id: ObjectId, facility: string}
+type Facility = {
+    _id: ObjectId,
+    facility: string
+}
 
 type Price = {
     interval: string,
     price: number
-}
-
-type VariableComponent = {
-    content: any[]
 }
 
 type Cowork = {
@@ -54,13 +54,20 @@ type AuthenticatedUser = {
     token: string
 }
 
-
-type Booking = {
-    id: ObjectId,
-    cowork: Cowork,
-    user: AuthenticatedUser,
+type BookingRequest = {
+    cowork: ObjectId,
     paymentMethod: PaymentMethod,
     priceTotal: number,
-    status: BookingStatus
+    startDate: Date,
+    endDate: Date,
+    status?: BookingStatus
+}
+
+type Booking = BookingRequest & {
+    id: ObjectId,
+    cowork: Cowork,
+    userEmail: string,
+    status: BookingStatus,
+    createdAt: Date
 }
 

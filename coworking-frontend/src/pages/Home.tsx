@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import HeroHome from "../components/organisms/HeroHome"
 import { useCowork } from "../utils/contexts/CoworkContext"
-import { Cowork } from "../utils/types/interfaces"
+import { Cowork } from "../utils/types/types"
 import CardSection from "../components/templates/CardSection"
 import Banner from "../components/organisms/Banner"
 import { useUser } from "../utils/contexts/UserContext"

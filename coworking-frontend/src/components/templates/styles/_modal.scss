@@ -9,14 +9,21 @@
     backdrop-filter: blur(3px);
     display: flex;
     justify-content: center;
+    
+    
     .modalContent {
       border-radius: 0 5rem 0 5rem;
+      padding: 0 2rem;
       background-color: $white;
       display: flex;
       flex-direction: column;
       height: fit-content;
       align-self: center;
       position: relative;
+      width: 1175px;
+      max-width: 75vw;
+      max-height: 75vh;
+      overflow-y: auto;
     }
     .close {
       position: absolute;

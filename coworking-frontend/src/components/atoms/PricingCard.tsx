@@ -1,4 +1,4 @@
-import { Price } from "../../utils/types/interfaces"
+import { Price } from "../../utils/types/types"
 
 
 

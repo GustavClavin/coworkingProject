@@ -1,5 +1,5 @@
 import { json } from "stream/consumers"
-import { AuthenticatedUser, Credentials, Facility, Review } from "../types/interfaces"
+import { AuthenticatedUser, Credentials, Facility, Review } from "../types/types"
 
 const BASE_URL = process.env.REACT_APP_API_BASE_URL
 

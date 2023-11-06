@@ -1,4 +1,4 @@
-import { Facility } from "../../utils/types/interfaces"
+import { Facility } from "../../utils/types/types"
 import { FoodIcon, GymIcon, CoffeeIcon, LockIcon, MedalIcon } from "./Icons"
 
 

@@ -47,8 +47,7 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <Modal />
-      <div className="">
-        <ul className="">
+        <ul className="nav">
           <li onClick={handleNavbarClick} id="home">
           <div className="pageicon"><HouseIcon /></div>
           </li>
@@ -68,7 +67,6 @@ const Navbar = () => {
             </li>
           )}
         </ul>
-      </div>
     </div>
   );
 };

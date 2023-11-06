@@ -1,5 +1,5 @@
 import React from 'react'
-import { Price } from "../../utils/types/interfaces"
+import { Price } from "../../utils/types/types"
 interface Props{
     price: Price
     color?: string

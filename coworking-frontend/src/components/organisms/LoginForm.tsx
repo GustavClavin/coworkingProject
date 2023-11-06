@@ -2,7 +2,7 @@ import { MouseEventHandler, useEffect, useState } from "react"
 import InputField from "../atoms/InputField"
 import MainButton from "../atoms/MainButton"
 import { useUser } from "../../utils/contexts/UserContext"
-import { Credentials } from "../../utils/types/interfaces"
+import { Credentials } from "../../utils/types/types"
 import { useModal } from "../../utils/contexts/ModalContext"
 import { error } from "console"
 

@@ -1,5 +1,5 @@
 import { FormEventHandler, MouseEventHandler } from "react"
-import { BtnType } from "../../utils/types/interfaces"
+import { BtnType } from "../../utils/types/types"
 
 
 interface Props {

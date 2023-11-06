@@ -1,5 +1,5 @@
 import { createContext, PropsWithChildren, useContext, useEffect, useState } from "react";
-import { AuthenticatedUser, Credentials } from "../types/interfaces";
+import { AuthenticatedUser, Credentials } from "../types/types";
 import { createUser, loginUser, logoutUser } from "../helpers/apiCalls";
 import { getUserLocalStorage, saveUserLocalStorage } from "../helpers/localStorage";
 const bcrypt = require('bcryptjs')
@@ -11,7 +11,7 @@ type UserContextType = {
     logout: (user: AuthenticatedUser) => void
     registerAndLogin: (credentials: Credentials) => void
     clearError: () => void
-   
+    //autoLogin: () => void
 }
 
 const defaultState: UserContextType = {
@@ -20,8 +20,8 @@ const defaultState: UserContextType = {
     login: (credentials) => {},
     logout: (user) => {},
     registerAndLogin: (credentials) => {},
-    clearError: () => {}
-    
+    clearError: () => {},
+    //autoLogin: () => {}
 }
 
 const UserContext = createContext<UserContextType>(defaultState)
@@ -33,10 +33,10 @@ const UserProvider = ({ children }: PropsWithChildren) => {
     /* useEffect(() => {
         if(!user){
             try {
-                const loginSavedUser = async () => {
-                    const hashedUser: Credentials = await getUserLocalStorage()
-                    console.log(hashedUser)
-                    await login(hashedUser)
+                const autoLogin = async () => {
+                    const hashedUser = await getUserLocalStorage()
+                    const _user = ???
+                    await login(_user)
                 }
                 loginSavedUser()
             } catch (error) {

@@ -1,22 +1,57 @@
 .checkout{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 3rem;
     padding: 3rem 0;
+    flex-wrap: wrap;
     
     section{
+        align-items: center;
+        flex: 1;
         display: flex;
         flex-direction: column;
-        width: 40%;
+        justify-content: space-between;
+        h1{
+            white-space: nowrap;
+        }
+        img{
+            
+            max-width: 60%;
+            min-width: 480px;
+            border-radius: 2rem;
+        }
+        ul{
+            padding: 0;
+            max-width: 60%;
+            min-width: 480px;
+            gap: .5rem;
+            flex-wrap: wrap;
+            justify-content: start;
+            li{
+                gap: 0;
+                justify-content: space-between;
+            }
+        }
+        .imgAndInfo, .priceBuy{
+            gap: 1rem;
+            display: flex;
+            flex-direction: column; 
+        }
+        .priceBuy{
+            align-self: start;
+        }
     }
     .totalPrice{
         display: flex;
         justify-content: space-between;
+        max-width: 60%;
+        min-width: 480px;
     }
     .paymentOptions{
         display: flex;
         width: 100%;
         align-items: center;
-        justify-content: center;
+        justify-content: space-evenly;
         *{
             height: 100%;
         }
@@ -37,6 +72,24 @@
         .selected{
             border: 3px solid $green;
             border-radius: 1rem;
+        }
+    }
+}
+
+@media screen and (max-width: 1565px){
+    .checkout{
+        .rightSection{
+            gap: 2rem;
+            .imgAndInfo{
+                align-items: center;
+                ul{
+                    justify-content: center;
+                }
+            }
+            .priceBuy{
+                padding-top: 2rem;
+                align-self: center;
+            }
         }
     }
 }
