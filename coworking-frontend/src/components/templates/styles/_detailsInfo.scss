@@ -4,6 +4,7 @@
     justify-content: space-between;
     padding: 0 3rem;
     margin-bottom: 5rem;
+    min-height: 80vh;
     width: 100vw;
     max-width: 90%;
     .detailsGeneral{
@@ -33,12 +34,16 @@
             gap: 1.25rem;
             padding: .5rem 0;
         }
+        .mainButton{
+            margin-bottom: 8vh ;
+        }
         .pricing{
             display: flex;
             flex-direction: column;
             gap: 2rem;
         }
         .reviews{
+            
             display: flex;
             flex-direction: column;
             gap: 2rem;
@@ -85,9 +90,10 @@
             position: fixed;
             z-index: 100;
             align-self: center;
-            bottom: 8rem;
+            bottom: 0;
             width: 85vw;
             max-width: 600px;
+            margin-bottom: 0;
         }
         .map{
             width: 85vw;

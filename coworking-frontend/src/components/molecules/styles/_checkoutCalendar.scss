@@ -5,18 +5,10 @@
     align-items: center;
     text-align: center;
     width: 550px;
-    .react-calendar__navigation {
-        .react-calendar__navigation__arrow {
-            font-size: 2rem;
-        }
-    
-        .react-calendar__navigation__label {
-            font-size: 32px;
-        }
-        .react-calendar_navigation_prev2-button{
-            display: none;
-        }
+    *{
+        font-family: Poppins;
     }
+    
     .react-calendar__tile,
     .react-calendar__month-view__days__day {
         font-size: 18px;
@@ -56,7 +48,7 @@
     .react-calendar__tile--rangeEnd {
         abbr{
 
-            padding: 1.7rem;
+            padding: 1.6rem;
             aspect-ratio: 1;
             display: block;
             background-color: $dark-grey;
@@ -69,7 +61,7 @@
         color: $white;
         abbr{
 
-            padding: 1.7rem;
+            padding: 1.6rem;
             aspect-ratio: 1;
             display: block;
             background-color: $dark-grey;
@@ -153,3 +145,27 @@ button.adjacent-left::after {
     position: absolute;
 }
 
+.react-calendar__navigation {
+    width: 92.5%;
+    display: flex;
+    justify-content: space-between;
+    
+    
+    .react-calendar__navigation__arrow {
+        font-size: 2rem;
+        border: none;
+        background-color: $white;
+    }
+
+    .react-calendar__navigation__label {
+        font-size: 24px;
+        max-width: fit-content;
+        border: none;
+        background-color: $white;
+        pointer-events: none;
+    }
+    .react-calendar__navigation__prev2-button,
+    .react-calendar__navigation__next2-button{
+        display: none;
+    }
+}

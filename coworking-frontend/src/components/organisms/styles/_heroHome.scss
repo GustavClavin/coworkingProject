@@ -4,6 +4,7 @@
   background-repeat: no-repeat;
   width: 1732px;
   height: 800px;
+  max-height: 80vh;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -23,8 +24,8 @@
     span{
         z-index: 100;
         color: $darkest-grey;
-        bottom: 30px;
-        right: 10px;
+        bottom: 46px;
+        right: 30px;
         font-size: 64px;
         position: absolute;
         mix-blend-mode: initial;
@@ -48,5 +49,97 @@
       padding-bottom: .5rem;
     }
     
+  }
+}
+
+@media screen and (max-width: 1350px) {
+  .heroHome{
+    h1{
+      font-size: 150px;
+      span{
+        bottom: 35px;
+      }
+    }
+
+  }
+}
+@media screen and (max-width: 1150px) {
+  .heroHome{
+    h1{
+      font-size: 120px;
+      span{
+        font-size: 50px;
+        bottom: 28px;
+        right: 25px;
+      }
+    }
+    .sloganContainer{
+      padding: .5rem 5rem;
+    }
+
+  }
+}
+@media screen and (max-width: 900px) {
+  .heroHome{
+    h1{
+      font-size: 90px;
+      span{
+        font-size: 36px;
+        bottom: 21px;
+        right: 20px;
+      }
+    }
+    .sloganContainer{
+      padding: .5rem 3rem;
+      gap: 0.5rem;
+    }
+  }
+}
+@media screen and (max-width: 864px) {
+  .heroHome{
+    .sloganContainer{
+      bottom: -3rem;
+      .thumb{
+        font-size: 50px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 675px) {
+  .heroHome{
+    h1{
+      font-size: 64px;
+      span{
+        font-size: 28px;
+        bottom: 13px;
+        right: 10px;
+      }
+    }
+    .sloganContainer{
+      padding: .5rem;
+    }
+  }
+}
+@media screen and (max-width: 500px) {
+  .heroHome{
+    h1{
+      font-size: 40px;
+      span{
+        font-size: 18px;
+        bottom: 8px;
+        right: 6px;
+      }
+    }
+    .sloganContainer{
+      border-radius: 1.5rem;
+      padding: .5rem 1rem;
+      bottom: -2.5rem;
+      h2{
+        max-width: 250px;
+      }
+      .thumb{
+        font-size: 36px;
+      }
+    }
   }
 }

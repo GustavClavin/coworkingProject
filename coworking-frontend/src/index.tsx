@@ -5,6 +5,7 @@ import App from './App';
 import { UserProvider } from "./utils/contexts/UserContext";
 import { ModalProvider } from "./utils/contexts/ModalContext";
 import { CoworkProvider } from "./utils/contexts/CoworkContext";
+import { BookingProvider } from "./utils/contexts/BookingContext";
 
 
 const root = ReactDOM.createRoot(
@@ -15,7 +16,9 @@ root.render(
     <UserProvider>
     <ModalProvider>
     <CoworkProvider>
+    <BookingProvider>
       <App />
+    </BookingProvider>  
     </CoworkProvider>
     </ModalProvider>  
     </UserProvider>

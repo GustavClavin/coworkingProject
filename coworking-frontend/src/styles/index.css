@@ -93,10 +93,40 @@ p {
   color: #848484;
 }
 
+.lightGreybg {
+  background-color: #848484;
+}
+
 .gradient {
   background: linear-gradient(0deg, rgba(55, 55, 55, 0) 0%, rgba(55, 55, 55, 0) 100%), linear-gradient(180deg, #FFF 48.85%, rgba(255, 255, 255, 0.25) 100%);
 }
 
+@media screen and (max-width: 864px) {
+  h1 {
+    font-size: 49px;
+  }
+  h2 {
+    font-size: 36px;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  p {
+    font-size: 20px;
+  }
+  .xs {
+    font-size: 14px;
+  }
+  .h2Rajhadi {
+    font-size: 24px;
+  }
+  .pRajhadi {
+    font-size: 24px;
+  }
+  .bannerText {
+    font-size: 28px;
+  }
+}
 .mainButton {
   height: 88px;
   font-size: 36;
@@ -219,14 +249,8 @@ input {
   text-align: center;
   width: 550px;
 }
-.checkoutCalendar .react-calendar__navigation .react-calendar__navigation__arrow {
-  font-size: 2rem;
-}
-.checkoutCalendar .react-calendar__navigation .react-calendar__navigation__label {
-  font-size: 32px;
-}
-.checkoutCalendar .react-calendar__navigation .react-calendar_navigation_prev2-button {
-  display: none;
+.checkoutCalendar * {
+  font-family: Poppins;
 }
 .checkoutCalendar .react-calendar__tile,
 .checkoutCalendar .react-calendar__month-view__days__day {
@@ -260,7 +284,7 @@ input {
 }
 .checkoutCalendar .react-calendar__tile--rangeStart abbr,
 .checkoutCalendar .react-calendar__tile--rangeEnd abbr {
-  padding: 1.7rem;
+  padding: 1.6rem;
   aspect-ratio: 1;
   display: block;
   background-color: #3f3f3f;
@@ -271,7 +295,7 @@ input {
   color: #ffffff;
 }
 .checkoutCalendar .react-calendar__tile--rangeBothEnds abbr {
-  padding: 1.7rem;
+  padding: 1.6rem;
   aspect-ratio: 1;
   display: block;
   background-color: #3f3f3f;
@@ -349,6 +373,29 @@ button.adjacent-left::after {
   position: absolute;
 }
 
+.react-calendar__navigation {
+  width: 92.5%;
+  display: flex;
+  justify-content: space-between;
+}
+.react-calendar__navigation .react-calendar__navigation__arrow {
+  font-size: 2rem;
+  border: none;
+  background-color: #ffffff;
+}
+.react-calendar__navigation .react-calendar__navigation__label {
+  font-size: 24px;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  border: none;
+  background-color: #ffffff;
+  pointer-events: none;
+}
+.react-calendar__navigation .react-calendar__navigation__prev2-button,
+.react-calendar__navigation .react-calendar__navigation__next2-button {
+  display: none;
+}
+
 .navbar {
   background-color: transparent;
   position: fixed;
@@ -379,6 +426,7 @@ button.adjacent-left::after {
   background-repeat: no-repeat;
   width: 1732px;
   height: 800px;
+  max-height: 80vh;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -400,8 +448,8 @@ button.adjacent-left::after {
 .heroHome h1 span {
   z-index: 100;
   color: #272727;
-  bottom: 30px;
-  right: 10px;
+  bottom: 46px;
+  right: 30px;
   font-size: 64px;
   position: absolute;
   mix-blend-mode: initial;
@@ -426,6 +474,83 @@ button.adjacent-left::after {
   padding-bottom: 0.5rem;
 }
 
+@media screen and (max-width: 1350px) {
+  .heroHome h1 {
+    font-size: 150px;
+  }
+  .heroHome h1 span {
+    bottom: 35px;
+  }
+}
+@media screen and (max-width: 1150px) {
+  .heroHome h1 {
+    font-size: 120px;
+  }
+  .heroHome h1 span {
+    font-size: 50px;
+    bottom: 28px;
+    right: 25px;
+  }
+  .heroHome .sloganContainer {
+    padding: 0.5rem 5rem;
+  }
+}
+@media screen and (max-width: 900px) {
+  .heroHome h1 {
+    font-size: 90px;
+  }
+  .heroHome h1 span {
+    font-size: 36px;
+    bottom: 21px;
+    right: 20px;
+  }
+  .heroHome .sloganContainer {
+    padding: 0.5rem 3rem;
+    gap: 0.5rem;
+  }
+}
+@media screen and (max-width: 864px) {
+  .heroHome .sloganContainer {
+    bottom: -3rem;
+  }
+  .heroHome .sloganContainer .thumb {
+    font-size: 50px;
+  }
+}
+@media screen and (max-width: 675px) {
+  .heroHome h1 {
+    font-size: 64px;
+  }
+  .heroHome h1 span {
+    font-size: 28px;
+    bottom: 13px;
+    right: 10px;
+  }
+  .heroHome .sloganContainer {
+    padding: 0.5rem;
+  }
+}
+@media screen and (max-width: 500px) {
+  .heroHome h1 {
+    font-size: 40px;
+  }
+  .heroHome h1 span {
+    font-size: 18px;
+    bottom: 8px;
+    right: 6px;
+  }
+  .heroHome .sloganContainer {
+    border-radius: 1.5rem;
+    padding: 0.5rem 1rem;
+    bottom: -2.5rem;
+  }
+  .heroHome .sloganContainer h2 {
+    max-width: 250px;
+  }
+  .heroHome .sloganContainer .thumb {
+    font-size: 36px;
+  }
+}
 .heroDetails {
   display: flex;
   gap: 8px;
@@ -796,6 +921,18 @@ footer .banner img {
   max-height: 75vh;
   overflow-y: auto;
 }
+#modal .modalContent::-webkit-scrollbar {
+  width: 10px;
+}
+#modal .modalContent::-webkit-scrollbar-thumb {
+  background-color: #3f3f3f;
+  border-radius: 4px;
+}
+#modal .modalContent::-webkit-scrollbar-track {
+  background-color: #d2d2d2; /* Color of the track */
+  border-radius: 4px; /* Rounded corners for the track */
+  margin-top: 5rem;
+}
 #modal .close {
   position: absolute;
   width: 4rem;
@@ -809,6 +946,7 @@ footer .banner img {
   justify-content: space-between;
   padding: 0 3rem;
   margin-bottom: 5rem;
+  min-height: 80vh;
   width: 100vw;
   max-width: 90%;
 }
@@ -839,6 +977,9 @@ footer .banner img {
   align-items: center;
   gap: 1.25rem;
   padding: 0.5rem 0;
+}
+.detailsMain aside .mainButton {
+  margin-bottom: 8vh;
 }
 .detailsMain aside .pricing {
   display: flex;
@@ -882,9 +1023,10 @@ footer .banner img {
     position: fixed;
     z-index: 100;
     align-self: center;
-    bottom: 8rem;
+    bottom: 0;
     width: 85vw;
     max-width: 600px;
+    margin-bottom: 0;
   }
   .detailsMain .map {
     width: 85vw;

@@ -5,11 +5,27 @@ import { useCowork } from "../../utils/contexts/CoworkContext"
 import CoworkGeneralInfo from "../molecules/CoworkGeneralInfo"
 import CheckoutCalendar from "../molecules/CheckoutCalendar"
 import MainButton from "../atoms/MainButton"
+import { useBooking } from "../../utils/contexts/BookingContext"
+import { useUser } from "../../utils/contexts/UserContext"
 
 
 const Checkout = () => {
     const { coworkBySlug } = useCowork()
-    const orderTotal = 0 //order context here 
+    const { bookingRequest, postBooking } = useBooking()
+    const { user } = useUser()
+    let orderTotal = 0
+    let color = 'lightGreybg'
+    if(bookingRequest){
+      orderTotal = bookingRequest.priceTotal
+      color = 'greenbg'
+    }
+
+    const handleClick = async () => {
+      if(bookingRequest && user){
+        postBooking(user)
+      }
+    }
+    
   return (
     <>
     {coworkBySlug &&(
@@ -30,7 +46,7 @@ const Checkout = () => {
             <p>Total price</p>
             <p>{orderTotal} THB</p>
           </div>
-          <MainButton type="button" btnText="Book now!" color="greenbg" />
+          <MainButton onClick={handleClick} type="button" btnText="Book now!" color={color} />
         </div>
 
       </section>

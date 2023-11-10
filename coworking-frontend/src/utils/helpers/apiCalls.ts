@@ -1,5 +1,6 @@
 import { json } from "stream/consumers"
-import { AuthenticatedUser, Credentials, Facility, Review } from "../types/types"
+import { AuthenticatedUser, BookingRequest, Credentials, Facility, Review } from "../types/types"
+import { ObjectId } from "mongoose"
 
 const BASE_URL = process.env.REACT_APP_API_BASE_URL
 
@@ -136,6 +137,93 @@ export const _getReviews = async (slug: string) => {
     } catch (error) {
         console.log('Error getting reviews for: ' + slug)
         console.error(error)
+        throw error
+    }
+}
+
+export const createBooking = async (bookingRequest: BookingRequest, user: AuthenticatedUser) => {
+    try {
+        const response = await fetch(BASE_URL + 'bookings', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${user.token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(bookingRequest)
+        })
+
+        const jsonRes = await response.json()
+        console.log('Booking request sent for: ')
+        console.log(jsonRes)
+        return jsonRes
+    } catch (error) {
+        console.log('Error creating booking!')
+        console.log(error)
+        throw error
+    }
+}
+
+export const getBookings = async (user: AuthenticatedUser) => {
+    try {
+        const response = await fetch(BASE_URL + 'bookings', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${user.token}`,
+                'Content-Type': 'application/json'
+            }
+        })
+
+        const jsonRes = await response.json()
+        console.log('Bookings fetched: ')
+        console.log(jsonRes)
+        return jsonRes
+    } catch (error) {
+        console.log('Error fetching bookings!')
+        console.log(error)
+        throw error
+    }
+}
+
+export const editBooking = async (_id: ObjectId, user: AuthenticatedUser) => {
+    try {
+        const response = await fetch(BASE_URL + 'bookings', {
+            method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${user.token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(_id)
+        })
+
+        const jsonRes = await response.json()
+        console.log('Edir sent for: ')
+        console.log(jsonRes)
+        return jsonRes
+    } catch (error) {
+        console.log('Error editing booking!')
+        console.log(error)
+        throw error
+    }
+}
+
+export const deleteBooking = async (_id: ObjectId, user: AuthenticatedUser) => {
+    try {
+        const response = await fetch(BASE_URL + 'bookings', {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${user.token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(_id)
+        })
+
+        const jsonRes = await response.json()
+        console.log('Delete sent for: ')
+        console.log(jsonRes)
+        return jsonRes
+    } catch (error) {
+        console.log('Error deleting booking!')
+        console.log(error)
         throw error
     }
 }

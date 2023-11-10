@@ -1,15 +1,27 @@
 import React, { useState, useEffect } from 'react'
-import Calendar from "react-calendar"
+import Calendar, { NavigationLabelFunc, YearView } from "react-calendar"
+import { Value, Price } from "../../utils/types/types"
+import { useCowork } from "../../utils/contexts/CoworkContext"
+import { useBooking } from "../../utils/contexts/BookingContext"
 
 
 
-type ValuePiece = Date | null
-type Value = ValuePiece | [ValuePiece, ValuePiece]
 
 const CheckoutCalendar =  () => {
-  const [value, onChange] = useState<Value>(new Date)
+  const { coworkBySlug } = useCowork()
+  const { createRequest, bookingRequest } = useBooking()
+  let defaultValue: Value
+  if(bookingRequest){
+    defaultValue = [bookingRequest.startDate, bookingRequest.endDate]
+  }else{
+    defaultValue = new Date
+  }
+  const [value, onChange] = useState<Value>(defaultValue)
   const [allUnique, setAllUnique] = useState<boolean>(true)
+  
   let daysFound: number[] = []
+  
+  
   const addCustomClasses = () => {
     const tiles = document.querySelectorAll('.react-calendar__tile')
     let tileCounter: number = 0
@@ -18,10 +30,13 @@ const CheckoutCalendar =  () => {
         tile.className = `${tileCounter} ` + tile.className
       }
       tileCounter++
-      if(tileCounter > 6)
+      if(tileCounter > 6){
         tileCounter = 0
+      }
+      document.querySelector('.adjacent-left')?.classList.remove('adjacent-left')
+      document.querySelector('.adjacent-right')?.classList.remove('adjacent-right')
     })
-
+    
     let firstMondayHandeled = false
     let firstSundayHandeled = false
     let mondayFound = false
@@ -89,25 +104,39 @@ const CheckoutCalendar =  () => {
       const elementAfterLastDay = lastDay && lastDay.nextElementSibling
       elementAfterLastDay?.classList.add('adjacent-right')
     }
-    else {
-      document.querySelector('.adjacent-left')?.classList.remove('adjacent-left')
-      document.querySelector('.adjacent-right')?.classList.remove('adjacent-right')
-    }
   }
   
-  
+  const onClick = (date: Date) => {
+    const endOfDay = new Date(date)
+    endOfDay.setHours(23, 59, 59)
+    if (value instanceof Date) {
+      onChange([date, endOfDay])
+      
+    } else if (Array.isArray(value)) {
+      onChange([date, endOfDay])
+      
+    }
+  }
+
   useEffect(() => {
     addCustomClasses()
     
+    if(Array.isArray(value)){
+      createRequest(value)
+    }
+    
   }, [value, allUnique])
+  
   
   return (
     <Calendar
+     onClickDay={onClick}
      onChange={onChange} 
      className={['checkoutCalendar']} 
      minDate={new Date}
      selectRange={true}
      view="month"
+    
      />
   )
 

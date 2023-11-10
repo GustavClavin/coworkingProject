@@ -10,6 +10,10 @@ type BookingStatus = 'pending' | 'active' | 'cancelled' | 'passed'
 
 type IMGURL = `${'https://'}${string}` | `${string}${'puplic/images/'}${string}`
 
+type ValuePiece = Date | null
+
+type Value = ValuePiece | [ValuePiece, ValuePiece]
+
 type Facility = {
     _id: ObjectId,
     facility: string
@@ -68,6 +72,6 @@ type Booking = BookingRequest & {
     cowork: Cowork,
     userEmail: string,
     status: BookingStatus,
-    createdAt: Date
+    createdAt: Date,
 }
 

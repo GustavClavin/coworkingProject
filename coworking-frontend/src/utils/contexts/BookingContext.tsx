@@ -1,13 +1,18 @@
 import { createContext, PropsWithChildren, useContext, useState } from "react"
-import { Booking, BookingRequest } from "../types/types"
+import { AuthenticatedUser, Booking, BookingRequest, PaymentMethod, Price, ValuePiece } from "../types/types"
+import { createBooking, getBookings } from "../helpers/apiCalls"
+import { useCowork } from "./CoworkContext"
 
 
 interface BookingContextType {
   bookingRequest: BookingRequest | null,
   userBookings: Booking[],
   error: string | null,
-  postBooking: (bookingRequest: BookingRequest) => Promise<Booking | undefined>,
-  getUserBookings: () => Promise<Booking[] | undefined>,
+  createRequest: (value: [ValuePiece, ValuePiece]) => void,
+  changePaymentMethod: (paymentMethod: PaymentMethod) => void,
+  resetRequest: () => void
+  postBooking: (user: AuthenticatedUser) => Promise<boolean>,
+  getUserBookings: (user: AuthenticatedUser) => Promise<Booking[] | undefined>,
   clearError: () => void
 }
 
@@ -15,7 +20,10 @@ const defaultState: BookingContextType = {
   bookingRequest: null,
   userBookings: [],
   error: null,
-  postBooking: async (currentBooking) => {return undefined},
+  createRequest: (value) => {},
+  changePaymentMethod: (paymentMethod) => {},
+  resetRequest: () => {},
+  postBooking: async (user) => {return false},
   getUserBookings: async () => {return undefined},
   clearError: () => {}
 }
@@ -23,16 +31,78 @@ const defaultState: BookingContextType = {
 const BookingContext = createContext<BookingContextType>(defaultState)
 
 const BookingProvider = ({ children }: PropsWithChildren) => {
+  const {coworkBySlug} = useCowork()
   const [bookingRequest, setBookingRequest] = useState<BookingRequest | null>(defaultState.bookingRequest)
   const [userBookings, setUserBookings] = useState<Booking[]>(defaultState.userBookings)
   const [error, setError] = useState<string | null>(defaultState.error)
 
-  const postBooking = async (bookingRequest: BookingRequest): Promise<Booking | undefined> => {
-    return undefined
+  const postBooking = async (user: AuthenticatedUser) => {
+    if(bookingRequest){
+      const response = await createBooking(bookingRequest, user)
+      if(response._id){
+      
+        return true
+      }else{
+        return false
+      }
+    }
+    return false
   }
 
-  const getUserBookings = async (): Promise<Booking[] | undefined> => {
-    return undefined
+  const createRequest = async (value: [ValuePiece, ValuePiece]) => {
+    const startDate = value[0]
+    const endDate = value[1]
+    if(startDate && endDate){
+      const duration = Math.floor((endDate?.getTime() - startDate?.getTime()) / (24 * 60 * 60 * 1000)) + 1
+
+      let totalPrice: number = 0
+      if(duration < 7 && coworkBySlug){
+       const price = coworkBySlug.pricing.find((price) => price.interval === 'daily' )
+       totalPrice = (price as Price).price * duration
+      }else if(duration < 30 && coworkBySlug){
+       const price = coworkBySlug.pricing.find((price) => price.interval === 'weekly' )
+       totalPrice = Math.floor((price as Price).price * duration / 7)
+      }else if(coworkBySlug){
+       const price = coworkBySlug.pricing.find((price) => price.interval === 'monthly' )
+       totalPrice = (price as Price).price * duration / 30
+      }
+
+      if(coworkBySlug && totalPrice){
+        setBookingRequest({
+          cowork: coworkBySlug._id,
+          paymentMethod: "visaMastercard",
+          priceTotal: totalPrice,
+          startDate: startDate,
+          endDate: endDate
+        })
+      }
+    }else{
+      console.log('Not a complete range of dates')
+    }
+  }
+
+  const changePaymentMethod = (paymentMethod: PaymentMethod) => {
+    if(bookingRequest){
+      setBookingRequest({
+        ...bookingRequest,
+        paymentMethod: paymentMethod
+      })
+    }
+
+  }
+
+  const resetRequest = () => {
+    setBookingRequest(null)
+  }
+
+  const getUserBookings = async (user: AuthenticatedUser): Promise<Booking[] | undefined> => {
+    const response = await getBookings(user)
+        if(response){
+            if(Array.isArray(response)){
+                setUserBookings(response)
+                return response as Booking[]
+            }
+        }
   }
 
   const clearError = () => {
@@ -40,7 +110,7 @@ const BookingProvider = ({ children }: PropsWithChildren) => {
   }
 
   return (
-    <BookingContext.Provider value={{ bookingRequest, userBookings, error, postBooking, getUserBookings, clearError }} >
+    <BookingContext.Provider value={{ bookingRequest, userBookings, error, createRequest, changePaymentMethod, resetRequest, postBooking, getUserBookings, clearError }} >
       {children}
     </BookingContext.Provider>
   )

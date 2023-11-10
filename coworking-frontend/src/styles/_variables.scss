@@ -100,6 +100,36 @@ p{
 .lightGrey{
     color: $light-grey;
 }
+.lightGreybg{
+    background-color: $light-grey;
+}
 .gradient{
     background: $gradient;
+}
+
+@media screen and (max-width: 864px) {
+    h1{
+        font-size: 49px;
+    }
+    h2{
+        font-size: 36px;
+    }
+    h3{
+        font-size: 20px;
+    }
+    p{
+        font-size: 20px;
+    }
+    .xs{
+        font-size: 14px;
+    }
+    .h2Rajhadi{
+        font-size: 24px;
+    }
+    .pRajhadi{
+        font-size: 24px;
+    }
+    .bannerText{
+        font-size: 28px;
+    }
 }

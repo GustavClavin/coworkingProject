@@ -8,6 +8,7 @@ import Pricing from "../organisms/Pricing"
 import { useCowork } from "../../utils/contexts/CoworkContext"
 import CoworkGeneralInfo from "../molecules/CoworkGeneralInfo"
 import { useModal } from "../../utils/contexts/ModalContext"
+import { useBooking } from "../../utils/contexts/BookingContext"
 
 
 interface Props {
@@ -17,6 +18,7 @@ interface Props {
 const DetailsInfo = (props: Props) => {
     const {reviews} = useCowork()
     const { isOrdering, startOrder, openModal, isVisible } = useModal()
+    const { resetRequest } = useBooking()
     const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
     
     const stars = reviews.slice(0, 2).map((review, i) => {
@@ -43,6 +45,7 @@ const DetailsInfo = (props: Props) => {
     })
 
     const handleClick = async () => {
+        resetRequest()
         startOrder()
         openModal()
     }
