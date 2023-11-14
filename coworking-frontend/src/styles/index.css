@@ -419,6 +419,9 @@ button.adjacent-left::after {
   display: flex;
   gap: 2rem;
 }
+.navbar ul li div:hover {
+  cursor: pointer;
+}
 
 .heroHome {
   background-image: url("https://i.imgur.com/boCVQgT.jpg");
@@ -452,7 +455,6 @@ button.adjacent-left::after {
   right: 30px;
   font-size: 64px;
   position: absolute;
-  mix-blend-mode: initial;
 }
 .heroHome .sloganContainer {
   display: flex;
@@ -627,6 +629,10 @@ button.adjacent-left::after {
   justify-content: space-between;
 }
 
+.card:hover {
+  cursor: pointer;
+}
+
 .banner {
   display: flex;
   align-items: center;
@@ -656,10 +662,25 @@ button.adjacent-left::after {
 
 .map {
   width: 100%;
-  height: 100%;
+  aspect-ratio: 1.8;
   border-radius: 0 2rem 0 2rem;
 }
 
+@media screen and (max-width: 1500px) {
+  .map {
+    aspect-ratio: 1.5;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .map {
+    aspect-ratio: 1.2;
+  }
+}
+@media screen and (max-width: 864px) {
+  .map {
+    aspect-ratio: 1;
+  }
+}
 form {
   display: flex;
   flex-direction: column;
@@ -678,6 +699,10 @@ form p {
 form .error {
   text-decoration: none;
   color: #a72828;
+}
+form p:hover {
+  cursor: pointer;
+  color: #000000;
 }
 
 .footerContent {
@@ -827,7 +852,7 @@ form .error {
   height: 100%;
 }
 .checkout .paymentOptions .option {
-  padding: 1rem;
+  padding: 0.5rem;
   font-size: 4rem;
 }
 .checkout .paymentOptions .separator {
@@ -841,6 +866,10 @@ form .error {
 }
 .checkout .paymentOptions .selected {
   border: 3px solid #28a745;
+  border-radius: 1rem;
+}
+.checkout .paymentOptions .option:not(.selected) {
+  border: 3px solid transparent;
   border-radius: 1rem;
 }
 
@@ -859,6 +888,11 @@ form .error {
     align-self: center;
   }
 }
+.confirmation {
+  text-align: center;
+  margin: auto 0;
+}
+
 footer {
   background-image: url(https://i.imgur.com/qeZB9MV.jpg);
   background-repeat: no-repeat;
@@ -885,6 +919,13 @@ footer .banner img {
   opacity: 0;
 }
 
+@media screen and (max-width: 864px) {
+  footer .banner {
+    width: 40vw;
+    margin-right: 40vw;
+    padding-bottom: 0;
+  }
+}
 .cardSection {
   display: flex;
   justify-content: space-between;
@@ -918,7 +959,7 @@ footer .banner img {
   position: relative;
   width: 1175px;
   max-width: 75vw;
-  max-height: 75vh;
+  min-height: 65vh;
   overflow-y: auto;
 }
 #modal .modalContent::-webkit-scrollbar {
@@ -940,6 +981,9 @@ footer .banner img {
   top: 4rem;
   right: 4rem;
 }
+#modal .close:hover {
+  cursor: pointer;
+}
 
 .detailsMain {
   display: flex;
@@ -954,12 +998,15 @@ footer .banner img {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 50%;
+  width: 60%;
   max-width: 50vw;
   gap: 3rem;
 }
 .detailsMain .detailsGeneral .detailsDescription {
   padding-top: 4rem;
+}
+.detailsMain .detailsGeneral h1 {
+  text-align: start;
 }
 .detailsMain .detailsGeneral ul {
   max-width: 90%;

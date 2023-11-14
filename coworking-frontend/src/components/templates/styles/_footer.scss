@@ -24,3 +24,13 @@ footer{
         }
     }
 }
+
+@media screen and (max-width: 864px) {
+    footer{
+        .banner{
+            width: 40vw;
+            margin-right: 40vw;
+            padding-bottom: 0;
+        }
+    }
+}

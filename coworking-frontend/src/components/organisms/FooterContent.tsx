@@ -23,6 +23,7 @@ const FooterContent = (props: Props) => {
         window.removeEventListener('resize', handleLayoutSwap)
       }  
     }, [])
+    
     if(viewportWidth < 865){
         return (
             <section className="footerContent">

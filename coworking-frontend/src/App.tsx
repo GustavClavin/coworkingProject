@@ -5,13 +5,7 @@ import RootLayout from "./layouts/RootLayout";
 import Details from "./pages/Details"
 import Account from "./pages/Account"
 
-
-
-
-
-
 function App() {
-
   const router = createBrowserRouter([
     {
       path: '/',

@@ -7,12 +7,19 @@ import CheckoutCalendar from "../molecules/CheckoutCalendar"
 import MainButton from "../atoms/MainButton"
 import { useBooking } from "../../utils/contexts/BookingContext"
 import { useUser } from "../../utils/contexts/UserContext"
+import { useModal } from "../../utils/contexts/ModalContext"
+import { useNavigate } from "react-router-dom"
+import { faVolumeHigh } from "@fortawesome/free-solid-svg-icons"
 
 
 const Checkout = () => {
     const { coworkBySlug } = useCowork()
     const { bookingRequest, postBooking } = useBooking()
     const { user } = useUser()
+    const { setSuccess } = useModal()
+    const navigate = useNavigate()
+    
+
     let orderTotal = 0
     let color = 'lightGreybg'
     if(bookingRequest){
@@ -22,7 +29,14 @@ const Checkout = () => {
 
     const handleClick = async () => {
       if(bookingRequest && user){
-        postBooking(user)
+        const success = await postBooking(user)
+        console.log(success)
+        if(success){
+          setSuccess(true)
+          navigate(`/account/${user.email}`)
+        }else{
+          console.log('postBooking failed')
+        }
       }
     }
     

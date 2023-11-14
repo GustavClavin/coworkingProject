@@ -18,7 +18,7 @@ const PaymentMethods = () => {
     <>
         <h2>Choose Payment Method&nbsp;<CreditCardIcon /></h2>
         <div className="paymentOptions">
-            <div onClick={handleClick} id="paypal" className="paypal option "><PaypalIcon /></div>
+            <div onClick={handleClick} id="paypal" className="paypal option"><PaypalIcon /></div>
             <div className="separator"></div>
             <div onClick={handleClick} id="visaMastercard" className="visaMastercard option selected">
                 <div className="visa deepBlue"><VisaIcon /></div>

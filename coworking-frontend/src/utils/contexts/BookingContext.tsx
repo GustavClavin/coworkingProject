@@ -40,10 +40,7 @@ const BookingProvider = ({ children }: PropsWithChildren) => {
     if(bookingRequest){
       const response = await createBooking(bookingRequest, user)
       if(response._id){
-      
         return true
-      }else{
-        return false
       }
     }
     return false

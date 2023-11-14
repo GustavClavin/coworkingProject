@@ -61,7 +61,7 @@ const DetailsInfo = (props: Props) => {
       }  
     }, [])
 
-  if(viewportWidth < 864){
+  if(viewportWidth < 865){
     return(
         <>
         <section className="detailsMain">

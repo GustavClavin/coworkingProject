@@ -12,17 +12,6 @@ interface Props {
 
 const MainButton = (props: Props) => {
     
-
-
- 
-
-
-
-
-  
-
-   
-
     return (
       <button className={props.color + " mainButton"} type={props.type} onClick={props.onClick}>
         <h2>{props.btnText}</h2>

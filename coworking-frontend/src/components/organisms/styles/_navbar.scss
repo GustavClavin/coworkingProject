@@ -18,6 +18,9 @@
         li{
             display: flex;
             gap: 2rem;
+            div:hover{
+                cursor: pointer;
+            }
         }
     }
 }

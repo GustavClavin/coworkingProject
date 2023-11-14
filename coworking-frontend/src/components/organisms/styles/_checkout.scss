@@ -51,14 +51,14 @@
         display: flex;
         width: 100%;
         align-items: center;
+        
         justify-content: space-evenly;
         *{
             height: 100%;
         }
         .option{
-            padding: 1rem;
+            padding: .5rem;
             font-size: 4rem;
-            
         }
         .separator{
             border: 1px solid $lightest-grey;
@@ -71,6 +71,10 @@
         }
         .selected{
             border: 3px solid $green;
+            border-radius: 1rem;
+        }
+        .option:not(.selected){
+            border: 3px solid transparent;
             border-radius: 1rem;
         }
     }

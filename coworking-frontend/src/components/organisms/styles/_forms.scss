@@ -12,10 +12,16 @@ form{
     
     p{
         text-decoration: underline;
+        
     }
     .error{
         text-decoration: none;
         color: $red;
+    }
+
+    p:hover{
+        cursor: pointer;
+        color: $black;
     }
     
 }
