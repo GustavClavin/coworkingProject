@@ -5,13 +5,13 @@
     display: flex;
     gap: 1rem;
     li{
-        
         display: flex;
         align-items: center;
-        gap: .5rem;
+        justify-content: center;
         border: 2px solid ;
         border-radius: 0 1rem 0 1rem;
-        padding: .25rem 1rem;
+        padding: .25rem 0;
+        width: 105px;
         .cardicon{
             background-color: transparent;
         }

@@ -6,25 +6,23 @@ import { useCowork } from "./CoworkContext"
 
 interface BookingContextType {
   bookingRequest: BookingRequest | null,
-  userBookings: Booking[],
   error: string | null,
   createRequest: (value: [ValuePiece, ValuePiece]) => void,
   changePaymentMethod: (paymentMethod: PaymentMethod) => void,
   resetRequest: () => void
   postBooking: (user: AuthenticatedUser) => Promise<boolean>,
-  getUserBookings: (user: AuthenticatedUser) => Promise<Booking[] | undefined>,
+  getUserBookings: (user: AuthenticatedUser) => Promise<Booking[] | null>,
   clearError: () => void
 }
 
 const defaultState: BookingContextType = {
   bookingRequest: null,
-  userBookings: [],
   error: null,
   createRequest: (value) => {},
   changePaymentMethod: (paymentMethod) => {},
   resetRequest: () => {},
   postBooking: async (user) => {return false},
-  getUserBookings: async () => {return undefined},
+  getUserBookings: async () => {return null},
   clearError: () => {}
 }
 
@@ -33,7 +31,7 @@ const BookingContext = createContext<BookingContextType>(defaultState)
 const BookingProvider = ({ children }: PropsWithChildren) => {
   const {coworkBySlug} = useCowork()
   const [bookingRequest, setBookingRequest] = useState<BookingRequest | null>(defaultState.bookingRequest)
-  const [userBookings, setUserBookings] = useState<Booking[]>(defaultState.userBookings)
+  const [userBookings, setUserBookings] = useState<Booking[]>([])
   const [error, setError] = useState<string | null>(defaultState.error)
 
   const postBooking = async (user: AuthenticatedUser) => {
@@ -92,14 +90,15 @@ const BookingProvider = ({ children }: PropsWithChildren) => {
     setBookingRequest(null)
   }
 
-  const getUserBookings = async (user: AuthenticatedUser): Promise<Booking[] | undefined> => {
+  const getUserBookings = async (user: AuthenticatedUser): Promise<Booking[] | null> => {
     const response = await getBookings(user)
-        if(response){
-            if(Array.isArray(response)){
-                setUserBookings(response)
-                return response as Booking[]
-            }
-        }
+      if(response){
+          if(Array.isArray(response)){
+              setUserBookings(response)
+              return response as Booking[]
+          }
+      }
+    return null
   }
 
   const clearError = () => {
@@ -107,7 +106,7 @@ const BookingProvider = ({ children }: PropsWithChildren) => {
   }
 
   return (
-    <BookingContext.Provider value={{ bookingRequest, userBookings, error, createRequest, changePaymentMethod, resetRequest, postBooking, getUserBookings, clearError }} >
+    <BookingContext.Provider value={{ bookingRequest, error, createRequest, changePaymentMethod, resetRequest, postBooking, getUserBookings, clearError }} >
       {children}
     </BookingContext.Provider>
   )

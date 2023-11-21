@@ -1,0 +1,17 @@
+.accountContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    
+    section{
+        width: 100vw;
+        max-width: 1732px;
+        background-color: $dark-grey;
+        .bookingsHeading{
+            h2{
+                color: $white;
+                margin-left: 5rem;
+            }
+        }
+    }
+}

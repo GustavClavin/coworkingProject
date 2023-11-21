@@ -106,7 +106,7 @@ p {
     font-size: 49px;
   }
   h2 {
-    font-size: 36px;
+    font-size: 24px;
   }
   h3 {
     font-size: 20px;
@@ -114,13 +114,13 @@ p {
   p {
     font-size: 20px;
   }
+  .pRajhadi {
+    font-size: 24px;
+  }
   .xs {
     font-size: 14px;
   }
   .h2Rajhadi {
-    font-size: 24px;
-  }
-  .pRajhadi {
     font-size: 24px;
   }
   .bannerText {
@@ -141,9 +141,18 @@ p {
   cursor: pointer;
 }
 
+@media screen and (max-width: 864px) {
+  .mainButton {
+    height: 72px;
+  }
+  .mainButton h2 {
+    font-size: 24px;
+  }
+}
 .facility {
   width: 2rem;
   text-align: center;
+  justify-content: center;
   padding-bottom: 0.2rem;
   background-color: #ffffff;
   border-radius: 0 0.4rem 0 0.4rem;
@@ -177,7 +186,8 @@ input {
   padding-left: 1rem;
   margin-bottom: 2rem;
   border-radius: 0 1rem 0 1rem;
-  width: 560px;
+  max-width: 560px;
+  width: 100%;
 }
 
 .cardInfo {
@@ -229,10 +239,11 @@ input {
 .facilityList li {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
   border: 2px solid;
   border-radius: 0 1rem 0 1rem;
-  padding: 0.25rem 1rem;
+  padding: 0.25rem 0;
+  width: 105px;
 }
 .facilityList li .cardicon {
   background-color: transparent;
@@ -396,6 +407,38 @@ button.adjacent-left::after {
   display: none;
 }
 
+@media screen and (max-width: 864px) {
+  .checkoutCalendar {
+    width: 336px;
+  }
+  .checkoutCalendar .react-calendar__tile {
+    height: 3rem;
+    width: 3rem;
+  }
+  .checkoutCalendar .react-calendar__tile--rangeStart abbr,
+  .checkoutCalendar .react-calendar__tile--rangeEnd abbr {
+    padding: 0;
+    width: 100%;
+    padding-top: 0.6rem;
+    aspect-ratio: 1;
+    display: block;
+    background-color: #3f3f3f;
+    border-radius: 50%;
+  }
+  .checkoutCalendar .react-calendar__tile--rangeBothEnds {
+    background: #ffffff;
+    color: #ffffff;
+  }
+  .checkoutCalendar .react-calendar__tile--rangeBothEnds abbr {
+    padding: 0;
+    width: 100%;
+    padding-top: 0.6rem;
+    aspect-ratio: 1;
+    display: block;
+    background-color: #3f3f3f;
+    border-radius: 50%;
+  }
+}
 .navbar {
   background-color: transparent;
   position: fixed;
@@ -687,7 +730,8 @@ form {
   height: -moz-fit-content;
   height: fit-content;
   align-self: center;
-  padding: 4rem 16rem;
+  width: 100%;
+  max-width: 560px;
 }
 form p, form h1, form span, form button {
   text-align: center;
@@ -814,7 +858,7 @@ form p:hover {
 .checkout section img {
   max-width: 60%;
   min-width: 480px;
-  border-radius: 2rem;
+  border-radius: 0 2rem 0 2rem;
 }
 .checkout section ul {
   padding: 0;
@@ -823,10 +867,6 @@ form p:hover {
   gap: 0.5rem;
   flex-wrap: wrap;
   justify-content: start;
-}
-.checkout section ul li {
-  gap: 0;
-  justify-content: space-between;
 }
 .checkout section .imgAndInfo, .checkout section .priceBuy {
   gap: 1rem;
@@ -857,7 +897,7 @@ form p:hover {
 }
 .checkout .paymentOptions .separator {
   border: 1px solid #f3f3f3;
-  height: 100%;
+  max-height: 80%;
 }
 .checkout .paymentOptions .visaMastercard {
   width: -moz-fit-content;
@@ -873,19 +913,59 @@ form p:hover {
   border-radius: 1rem;
 }
 
-@media screen and (max-width: 1565px) {
-  .checkout .rightSection {
-    gap: 2rem;
+@media screen and (max-width: 1553px) {
+  .checkout .section {
+    max-width: 550px;
+    gap: 1rem;
   }
-  .checkout .rightSection .imgAndInfo {
-    align-items: center;
+  .checkout .section img {
+    max-width: 100%;
+    min-width: 100px;
   }
-  .checkout .rightSection .imgAndInfo ul {
-    justify-content: center;
+  .checkout .section .cowork-name {
+    padding-right: 15rem;
   }
-  .checkout .rightSection .priceBuy {
+  .checkout .section .priceBuy {
     padding-top: 2rem;
     align-self: center;
+  }
+  .checkout .section .paymentOptions {
+    justify-content: center;
+    gap: 2rem;
+  }
+}
+@media screen and (max-width: 864px) {
+  .checkout .section {
+    max-width: 345px;
+    gap: 1rem;
+  }
+  .checkout .section .cowork-name {
+    padding-right: 8rem;
+  }
+  .checkout .section img {
+    min-width: 340px;
+    width: 340px;
+  }
+  .checkout .section ul {
+    min-width: 240px;
+    justify-content: space-between;
+  }
+  .checkout .section .priceBuy {
+    max-width: 340px;
+  }
+  .checkout .section .priceBuy .totalPrice {
+    min-width: 340px;
+  }
+  .checkout .section .priceBuy h2 {
+    white-space: nowrap;
+  }
+  .checkout .section .paymentOptions {
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  .checkout .section .paymentOptions .option {
+    font-size: 3rem;
+    padding: 0 0.25rem;
   }
 }
 .confirmation {
@@ -960,6 +1040,7 @@ footer .banner img {
   width: 1175px;
   max-width: 75vw;
   min-height: 65vh;
+  max-height: 90vh;
   overflow-y: auto;
 }
 #modal .modalContent::-webkit-scrollbar {
@@ -985,6 +1066,29 @@ footer .banner img {
   cursor: pointer;
 }
 
+@media screen and (max-width: 1540px) {
+  #modal .modalContent {
+    border-radius: 0 3rem 0 3rem;
+  }
+  #modal .close {
+    top: 1rem;
+    right: 1rem;
+    width: 3rem;
+    height: 3rem;
+    background-color: white;
+  }
+}
+@media screen and (max-width: 600px) {
+  #modal {
+    flex-direction: column;
+    justify-content: end;
+  }
+  #modal .modalContent {
+    max-width: 100vw;
+    min-height: 95vh;
+    border-radius: 3rem 3rem 0 0;
+  }
+}
 .detailsMain {
   display: flex;
   justify-content: space-between;
@@ -1098,6 +1202,21 @@ footer .banner img {
   align-items: center;
 }
 
+.accountContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+.accountContainer section {
+  width: 100vw;
+  max-width: 1732px;
+  background-color: #3f3f3f;
+}
+.accountContainer section .bookingsHeading h2 {
+  color: #ffffff;
+  margin-left: 5rem;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -1152,4 +1271,12 @@ body {
 
 .button {
   font-family: Poppins;
+}
+
+@media screen and (max-width: 864px) {
+  .pageicon {
+    width: 3rem;
+    height: 3rem;
+    font-size: 16px;
+  }
 }/*# sourceMappingURL=index.css.map */

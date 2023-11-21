@@ -14,7 +14,7 @@ const splitCoworks = (array: Cowork[], sectionSize: number): Cowork[][] => {
   }
 
   return sections;
-};
+}
 
 const Home = () => {
   const user = useUser()
@@ -26,9 +26,9 @@ const Home = () => {
     if(!apiCalled){
       const fetchCoworks = async () => {
         const response = await getAll()
-        setApiCalled(true)
         if(response){
           setSections(splitCoworks(response, 3))
+          setApiCalled(true)
         }
         
       }

@@ -126,8 +126,6 @@
     
 }
 
-
-
 button.adjacent-right:before {
     content: "";
     width: 100%;
@@ -168,4 +166,43 @@ button.adjacent-left::after {
     .react-calendar__navigation__next2-button{
         display: none;
     }
+}
+
+@media screen and (max-width: 864px) {
+    .checkoutCalendar{
+        width: 336px;
+        .react-calendar__tile{
+            height: 3rem;
+            width: 3rem;
+        }
+
+        .react-calendar__tile--rangeStart,
+        .react-calendar__tile--rangeEnd {
+            abbr{
+            padding: 0;
+            width: 100%;
+            padding-top: .6rem;
+            aspect-ratio: 1;
+            display: block;
+            background-color: $dark-grey;
+            
+            border-radius: 50%;
+            }
+        }
+        .react-calendar__tile--rangeBothEnds{
+            background: $white;
+            color: $white;
+            abbr{
+            padding: 0;
+            width: 100%;
+            padding-top: .6rem;
+            aspect-ratio: 1;
+            display: block;
+            background-color: $dark-grey;
+            border-radius: 50%;
+            }
+        }
+    }
+    
+    
 }
