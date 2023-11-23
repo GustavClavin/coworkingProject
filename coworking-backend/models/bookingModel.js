@@ -24,8 +24,9 @@ exports.createBooking = async (req, res) => {
 exports.getBookings = async (req, res) => {
     try {
         const userId = req.userId
-        const bookings = await Booking.find({user: userId}).populate('user')
+        const bookings = await Booking.find({user: userId}).populate('cowork')
         res.status(200).json(bookings)
+        
     } catch (error) {
         res.status(500).json({
             message: 'Could not fetch posts'

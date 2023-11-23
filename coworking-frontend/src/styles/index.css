@@ -1205,16 +1205,19 @@ footer .banner img {
 .accountContainer {
   display: flex;
   flex-direction: column;
-  gap: 5rem;
 }
 .accountContainer section {
   width: 100vw;
   max-width: 1732px;
+  margin-bottom: 2rem;
+}
+.accountContainer section .bookingsHeading {
   background-color: #3f3f3f;
 }
 .accountContainer section .bookingsHeading h2 {
   color: #ffffff;
   margin-left: 5rem;
+  padding: 1rem 0;
 }
 
 * {
