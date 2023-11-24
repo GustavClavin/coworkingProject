@@ -5,8 +5,10 @@ import { useCowork } from "./CoworkContext"
 
 
 interface BookingContextType {
+  currentlyEditing: Booking |null,
   bookingRequest: BookingRequest | null,
   error: string | null,
+  setEditing: (booking: Booking | null) => void,
   createRequest: (value: [ValuePiece, ValuePiece]) => void,
   changePaymentMethod: (paymentMethod: PaymentMethod) => void,
   resetRequest: () => void
@@ -16,8 +18,10 @@ interface BookingContextType {
 }
 
 const defaultState: BookingContextType = {
+  currentlyEditing: null,
   bookingRequest: null,
   error: null,
+  setEditing: (booking) => {},
   createRequest: (value) => {},
   changePaymentMethod: (paymentMethod) => {},
   resetRequest: () => {},
@@ -30,9 +34,14 @@ const BookingContext = createContext<BookingContextType>(defaultState)
 
 const BookingProvider = ({ children }: PropsWithChildren) => {
   const {coworkBySlug} = useCowork()
+  const [currentlyEditing, setCurrentlyEditing] = useState<Booking | null>(defaultState.currentlyEditing)
   const [bookingRequest, setBookingRequest] = useState<BookingRequest | null>(defaultState.bookingRequest)
   const [userBookings, setUserBookings] = useState<Booking[]>([])
   const [error, setError] = useState<string | null>(defaultState.error)
+
+  const setEditing = async (booking: Booking | null) => {
+    setCurrentlyEditing(booking)
+  }
 
   const postBooking = async (user: AuthenticatedUser) => {
     if(bookingRequest){
@@ -106,7 +115,7 @@ const BookingProvider = ({ children }: PropsWithChildren) => {
   }
 
   return (
-    <BookingContext.Provider value={{ bookingRequest, error, createRequest, changePaymentMethod, resetRequest, postBooking, getUserBookings, clearError }} >
+    <BookingContext.Provider value={{ currentlyEditing, bookingRequest, error, setEditing, createRequest, changePaymentMethod, resetRequest, postBooking, getUserBookings, clearError }} >
       {children}
     </BookingContext.Provider>
   )

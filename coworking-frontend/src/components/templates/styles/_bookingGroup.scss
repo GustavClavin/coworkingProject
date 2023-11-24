@@ -1,0 +1,22 @@
+.bookingGroup{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    background-color: $lightest-grey;
+    padding: 0 5rem;
+}
+
+@media  screen and (max-width: 1600px) {
+    .bookingGroup{
+        padding: 0;
+    }
+}
+
+@media  screen and (max-width: 650px) {
+    .bookingGroup{
+        gap: 1rem;
+    }
+}
+

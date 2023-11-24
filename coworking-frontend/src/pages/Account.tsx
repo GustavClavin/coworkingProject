@@ -92,11 +92,12 @@ const Account = () => {
     return (
       <div className="accountContainer">
         <div className="accountHeading">
-          <div className="">
+          <div className="icon-title">
             <UserIcon />
             <h1>Account</h1>
           </div>
           <div className="email">
+            <div className="dot"></div>
             <p>{user.user?.email}</p>
           </div>
         </div>

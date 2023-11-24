@@ -19,7 +19,7 @@ const DetailsInfo = (props: Props) => {
     const {reviews} = useCowork()
     const { isOrdering, startOrder, openModal, isVisible } = useModal()
     const { resetRequest } = useBooking()
-    const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+    const [viewportWidth, setViewportWidth] = useState(window.innerWidth)
     
     const stars = reviews.slice(0, 2).map((review, i) => {
         const yellowStars: JSX.Element[] = Array.from({ length: review.rating }, (_, i) => {

@@ -1,6 +1,9 @@
 import React from 'react'
+import { useModal } from "../../utils/contexts/ModalContext"
 import { PenIcon } from "../atoms/Icons"
 import { Booking } from "../../utils/types/types"
+import { useEffect, useState } from "react"
+import { useBooking } from "../../utils/contexts/BookingContext"
 
 interface Props {
     booking: Booking,
@@ -8,6 +11,9 @@ interface Props {
 }
 
 const UserBooking = (props: Props) => {
+    const [viewportWidth, setViewportWidth] = useState(window.innerWidth)
+    const {startEdit, openModal} = useModal()
+    const {setEditing} = useBooking()
     const _getMonth = (date: Date) => {
         switch (String(date).slice(5, 7)) {
                 case '01':
@@ -40,18 +46,78 @@ const UserBooking = (props: Props) => {
         }
     }
 
-    
-
     const handlePenClick = () => {
+        openModal()
+        startEdit()
+        setEditing(props.booking)
+    }
 
+    const handleLayoutSwap = () => {
+        setViewportWidth(window.innerWidth)
+    }
+
+    useEffect(() => {
+      window.addEventListener('resize', handleLayoutSwap)
+      return () => {
+        window.removeEventListener('resize', handleLayoutSwap)
+      }  
+    }, [])
+    if(viewportWidth < 650){
+        if(props.edit){
+            return (
+                <div className="user-booking">
+                    <img src={props.booking.cowork.images[0]} alt="" />
+                    <div className="booking-info">
+                        <div className="title-edit">
+                            <h3>{props.booking.cowork.name}</h3>
+                            <div className="pen" onClick={handlePenClick}>
+                                <PenIcon />
+                            </div>
+                        </div>
+                        <div className="separator"></div>
+                        
+                        <ul>
+                            <li className="dates">
+                                <p className="xs">{String(props.booking.startDate).slice(8, 10)} {_getMonth(props.booking.startDate)} - {String(props.booking.endDate).slice(8, 10)} {_getMonth(props.booking.endDate)}</p>
+                            </li>
+                            <li className="price-total">
+                                <p className="xs">{props.booking.priceTotal} TBH</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+              )
+        }else{
+            return (
+                <article className="user-booking">
+                    <img src={props.booking.cowork.images[0]} alt="" />
+                    <div className="booking-info">
+                        <div className="title-edit">
+                            <h3>{props.booking.cowork.name}</h3>
+                        </div>
+                        <div className="separator"></div>
+                        
+                        <ul>
+                            <li className="dates">
+                                <p className="xs">{String(props.booking.startDate).slice(8, 10)} {_getMonth(props.booking.startDate)} - {String(props.booking.endDate).slice(8, 10)} {_getMonth(props.booking.endDate)}</p>
+                            </li>
+                            <li className="price-total">
+                                <p className="xs">{props.booking.priceTotal} TBH</p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+              )
+        }
     }
 
     if(props.edit){
         return (
-            <article className="booking">
+            <div className="user-booking">
                 <img src={props.booking.cowork.images[0]} alt="" />
-                <div className="">
-                    <div className="title+edit">
+                <div className="booking-info">
+                    <div className="title-edit">
                         <h3>{props.booking.cowork.name}</h3>
                         <div className="pen" onClick={handlePenClick}>
                             <PenIcon />
@@ -71,14 +137,15 @@ const UserBooking = (props: Props) => {
                         </li>
                     </ul>
                 </div>
-            </article>
+            </div>
+            
           )
     }else{
         return (
-            <article className="booking">
+            <article className="user-booking">
                 <img src={props.booking.cowork.images[0]} alt="" />
-                <div className="">
-                    <div className="title+edit">
+                <div className="booking-info">
+                    <div className="title-edit">
                         <h3>{props.booking.cowork.name}</h3>
                     </div>
                     <div className="separator"></div>

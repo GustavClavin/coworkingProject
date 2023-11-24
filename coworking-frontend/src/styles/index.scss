@@ -21,11 +21,14 @@
 @import '../components/organisms/styles/footerContent';
 @import '../components/organisms/styles/checkout';
 @import '../components/organisms/styles/bookingConfirmation';
+@import '../components/organisms/styles/userBooking';
 
 @import '../components/templates/styles/footer';
 @import '../components/templates/styles/cardSection';
 @import '../components/templates/styles/modal';
 @import '../components/templates/styles/detailsInfo';
+@import '../components/templates/styles/bookingGroup';
+
 
 @import '../pages/styles/home';
 @import '../pages/styles/details';
@@ -53,7 +56,7 @@
 html{
     display: flex;
     flex-direction: column;
-    background-color: $lightest-grey;
+    background-color: #d3d3d3;
 }
 
 body {

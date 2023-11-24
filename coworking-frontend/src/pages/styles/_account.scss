@@ -1,13 +1,38 @@
 .accountContainer{
     display: flex;
     flex-direction: column;
+    padding-top: 8rem;
     
+    .accountHeading{
+        display: flex;
+        align-items: baseline;
+        padding: 0 5rem;
+        width: 100%;
+        justify-content: space-between;
+        padding-bottom: 4rem;
+        .icon-title{
+            display: flex;
+            align-items: baseline;
+            font-size: 60px;
+            gap: 1rem;
+        }
+        .email{
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            .dot{
+                height: 20px;
+                width: 20px;
+                border-radius: 50%;
+                background-color: rgb(118, 193, 6);
+            }
+        }
+    }
     
     section{
         width: 100vw;
         max-width: 1732px;
         
-        margin-bottom: 2rem;
         
         .bookingsHeading{
             background-color: $dark-grey;
@@ -15,6 +40,46 @@
                 color: $white;
                 margin-left: 5rem;
                 padding: 1rem 0;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:1600px) {
+    .accountContainer{
+        .accountHeading{
+            padding: 0 1.5rem 2rem 1.5rem;
+           
+        }
+        section{
+            .bookingsHeading{
+                h2{
+                    margin-left: 1.5rem;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 864px) {
+    .accountContainer{
+        .accountHeading{
+            .icon-title{
+                font-size: 40px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:650px) {
+    .accountContainer{
+        .accountHeading{
+            flex-direction: column;
+        }
+        section{
+            .bookingsHeading{
+                h2{
+                    margin-left: 1rem;
+                }
             }
         }
     }

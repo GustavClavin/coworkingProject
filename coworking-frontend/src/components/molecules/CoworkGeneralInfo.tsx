@@ -14,7 +14,7 @@ const CoworkGeneralInfo = (props: Props) => {
             </div>
             <ul className="facilityList">
                 {props.cowork.facilities.map((facility) => (
-                    <li key={String(facility._id)+String(facility.facility)} className="facility+name">
+                    <li key={String(facility._id)+String(facility.facility)} className="facility-name">
                         <FacilityComponent facility={facility}/>
                         <p className="pRajhadi xs">{facility.facility}</p>
                     </li>
