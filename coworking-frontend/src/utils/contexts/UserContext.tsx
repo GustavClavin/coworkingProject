@@ -67,6 +67,7 @@ const UserProvider = ({ children }: PropsWithChildren) => {
     
     const logout = async (user: AuthenticatedUser) => {
         await logoutUser(user)
+        saveUserLocalStorage(null)
         setUser(null)
     }
 

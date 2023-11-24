@@ -33,6 +33,7 @@ const Checkout = () => {
         const success = await postBooking(user)
         console.log(success)
         if(success){
+          
           setSuccess(true)
           navigate(`/account/${user.email}`)
         }else{

@@ -46,23 +46,23 @@ const BookingProvider = ({ children }: PropsWithChildren) => {
   const [userBookings, setUserBookings] = useState<Booking[]>([])
   const [updatedBooking, setUpdatedBooking] = useState<Booking | null>()
   const [error, setError] = useState<string | null>(defaultState.error)
-  const {user} = useUser()
 
+  const {user} = useUser()
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        if (user && user) {
-          const response = await getBookings(user as AuthenticatedUser);
+        if (user) {
+          const response = await getBookings(user as AuthenticatedUser)
           if (response && Array.isArray(response)) {
-            setUserBookings(response);
+            setUserBookings(response)
           }
         }
       } catch (error) {
-        setError('Failed to fetch bookings'); // Set error state if fetching fails
+        setError('Failed to fetch bookings')
       }
-    };
+    }
 
-    fetchBookings();
+    fetchBookings()
   }, [user])
 
   const setEditing = async (booking: Booking | null) => {

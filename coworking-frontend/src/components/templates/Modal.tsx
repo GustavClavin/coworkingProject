@@ -43,9 +43,11 @@ const Modal = () => {
   const handleClick = () => {
     closeModal()
     user.clearError()
-    setSuccess(false)
     stopEdit()
     resetRequest()
+    if(orderSuccess){}
+    setSuccess(false)
+    window.location.reload()
   }
 
   return (

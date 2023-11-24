@@ -41,8 +41,8 @@ const CheckoutCalendar =  () => {
     let firstSundayHandeled = false
     let mondayFound = false
     let sundayFound = false
-    let lastMonday: null| Element = null
-    let lastSunday: null| Element = null
+    let lastMonday: null | Element = null
+    let lastSunday: null | Element = null
     
     const activeTiles = document.querySelectorAll('.react-calendar__tile--active')
     const firstDay: Element | null = document.querySelector('.react-calendar__tile--rangeStart')
