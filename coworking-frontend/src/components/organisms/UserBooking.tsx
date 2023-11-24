@@ -14,6 +14,7 @@ const UserBooking = (props: Props) => {
     const [viewportWidth, setViewportWidth] = useState(window.innerWidth)
     const {startEdit, openModal} = useModal()
     const {setEditing} = useBooking()
+    
     const _getMonth = (date: Date) => {
         switch (String(date).slice(5, 7)) {
                 case '01':

@@ -59,6 +59,7 @@ type AuthenticatedUser = {
 }
 
 type BookingRequest = {
+    _id?: ObjectId,
     cowork: ObjectId,
     paymentMethod: PaymentMethod,
     priceTotal: number,

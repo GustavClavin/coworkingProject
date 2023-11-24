@@ -10,7 +10,7 @@ import BookingGroup from "../components/templates/BookingGroup"
 
 const Account = () => {
   const user = useUser()
-  const { getUserBookings } = useBooking()
+  const { userBookings} = useBooking()
   const [bookings, setBookings] = useState<Booking[]>([])
   const [apiCalled, setApiCalled] = useState<boolean>(false)
   
@@ -18,21 +18,13 @@ const Account = () => {
   const [inactive, setInactive] = useState<Booking[]>([])
 
   useEffect(() => {
-    if(!apiCalled && user.user){
-      const fetchBookings = async () => {
-        const response = await getUserBookings((user.user as AuthenticatedUser))
-        if (response){
-          setApiCalled(true)
-          setBookings(response)
-        }
-      }
-      fetchBookings()
-    }
-  }, [apiCalled])
+    setBookings(userBookings)
+  }, [userBookings])
   
   useEffect(() => {
     if (bookings && bookings.length > 0) {
       const today = new Date()
+      const currentYear = today.getFullYear();
       const currentMonth = today.getMonth() + 1
       const currentDay = today.getDate()
   
@@ -40,17 +32,19 @@ const Account = () => {
       const inactiveBookings: Booking[] = []
   
       bookings.forEach((booking) => {
+        const bookingYear = Number(String(booking.startDate).slice(0, 4))
         const bookingMonth = Number(String(booking.startDate).slice(5, 7))
         const bookingDay = Number(String(booking.startDate).slice(8, 10))
   
         if (
-          bookingMonth > currentMonth ||
-          (bookingMonth === currentMonth && bookingDay > currentDay)
-        ) {
-          activeBookings.push(booking)
-        } else {
-          inactiveBookings.push(booking)
-        }
+          bookingYear > currentYear ||
+          (bookingYear === currentYear && bookingMonth > currentMonth) ||
+          (bookingYear === currentYear && bookingMonth === currentMonth && bookingDay > currentDay)
+      ) {
+          activeBookings.push(booking);
+      } else {
+          inactiveBookings.push(booking);
+      }
       })
 
       activeBookings.sort((a, b) => {

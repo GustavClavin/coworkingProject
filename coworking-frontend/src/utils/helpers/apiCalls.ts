@@ -184,7 +184,9 @@ export const getBookings = async (user: AuthenticatedUser) => {
     }
 }
 
-export const editBooking = async (_id: ObjectId, user: AuthenticatedUser) => {
+export const editBooking = async (_id: ObjectId, user: AuthenticatedUser, bookingRequest: BookingRequest) => {
+    const editRequest = {...bookingRequest, _id}
+    console.log(editRequest)
     try {
         const response = await fetch(BASE_URL + 'bookings', {
             method: 'PUT',
@@ -192,9 +194,8 @@ export const editBooking = async (_id: ObjectId, user: AuthenticatedUser) => {
                 'Authorization': `Bearer ${user.token}`,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(_id)
+            body: JSON.stringify(editRequest)
         })
-
         const jsonRes = await response.json()
         console.log('Edir sent for: ')
         console.log(jsonRes)

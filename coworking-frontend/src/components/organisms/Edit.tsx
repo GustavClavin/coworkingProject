@@ -8,17 +8,17 @@ import { useBooking } from "../../utils/contexts/BookingContext"
 import { useUser } from "../../utils/contexts/UserContext"
 import { useModal } from "../../utils/contexts/ModalContext"
 import { useNavigate } from "react-router-dom"
+import { ObjectId } from "mongoose"
 
 
 
 const Edit = () => {
     const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
-    const { bookingRequest, currentlyEditing } = useBooking()
+    const { bookingRequest, currentlyEditing, updateBooking, resetRequest } = useBooking()
     const { user } = useUser()
-    const { setSuccess } = useModal()
+    const { closeModal, stopEdit } = useModal()
     const navigate = useNavigate()
-    console.log(currentlyEditing)
-
+    
     let orderTotal = 0
     let color = 'lightGreybg'
     if(bookingRequest){
@@ -27,7 +27,17 @@ const Edit = () => {
     }
 
     const handleEdit = async () => {
-        
+        if(bookingRequest && user && currentlyEditing?._id){
+            const success = await updateBooking(user)
+            if(success){
+              closeModal()
+              resetRequest()
+              stopEdit()
+              window.location.reload()
+            }else{
+              console.log('postBooking failed')
+            }
+          }
     }
     const handleCancel = async () => {
 

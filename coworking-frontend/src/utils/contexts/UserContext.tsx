@@ -2,7 +2,7 @@ import { createContext, PropsWithChildren, useContext, useEffect, useState } fro
 import { AuthenticatedUser, Credentials } from "../types/types";
 import { createUser, loginUser, logoutUser } from "../helpers/apiCalls";
 import { getUserLocalStorage, saveUserLocalStorage } from "../helpers/localStorage";
-const bcrypt = require('bcryptjs')
+
 
 type UserContextType = {
     user: AuthenticatedUser | null
@@ -11,7 +11,7 @@ type UserContextType = {
     logout: (user: AuthenticatedUser) => void
     registerAndLogin: (credentials: Credentials) => void
     clearError: () => void
-    //autoLogin: () => void
+    
 }
 
 const defaultState: UserContextType = {
@@ -21,7 +21,7 @@ const defaultState: UserContextType = {
     logout: (user) => {},
     registerAndLogin: (credentials) => {},
     clearError: () => {},
-    //autoLogin: () => {}
+   
 }
 
 const UserContext = createContext<UserContextType>(defaultState)
@@ -30,26 +30,26 @@ const UserProvider = ({ children }: PropsWithChildren) => {
     const [user, setUser] = useState<AuthenticatedUser | null>(defaultState.user)
     const [error, setError] = useState<string | null>(defaultState.error)
     
-    /* useEffect(() => {
+    useEffect(() => {
         if(!user){
             try {
                 const autoLogin = async () => {
-                    const hashedUser = await getUserLocalStorage()
-                    const _user = ???
-                    await login(_user)
+                    const _user = await getUserLocalStorage()
+                    setUser(_user)
                 }
-                loginSavedUser()
+                autoLogin()
             } catch (error) {
                 console.log('Could not log in saved user')
             }
         }
-    }, [user]) */
+    }, [user])
 
     const login = async (credentials: Credentials) => {
         const response = await loginUser(credentials)
             if(response.token){
                 setUser(response)
-                saveUserLocalStorage(credentials)
+                saveUserLocalStorage(response)
+                
                 return
             }
             setError(response.message)
@@ -59,6 +59,7 @@ const UserProvider = ({ children }: PropsWithChildren) => {
             const response = await createUser(credentials)
             if(response.token){
                 setUser(response)
+                saveUserLocalStorage(response)
                 return
             }
             setError(response.message)

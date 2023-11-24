@@ -1,11 +1,15 @@
-import { createContext, PropsWithChildren, useContext, useState } from "react"
+import { createContext, PropsWithChildren, useContext, useEffect, useState } from "react"
 import { AuthenticatedUser, Booking, BookingRequest, PaymentMethod, Price, ValuePiece } from "../types/types"
-import { createBooking, getBookings } from "../helpers/apiCalls"
+import { createBooking, editBooking, getBookings } from "../helpers/apiCalls"
 import { useCowork } from "./CoworkContext"
+import { useUser } from "./UserContext"
+
+
 
 
 interface BookingContextType {
-  currentlyEditing: Booking |null,
+  userBookings: Booking[]
+  currentlyEditing: Booking | null,
   bookingRequest: BookingRequest | null,
   error: string | null,
   setEditing: (booking: Booking | null) => void,
@@ -14,10 +18,12 @@ interface BookingContextType {
   resetRequest: () => void
   postBooking: (user: AuthenticatedUser) => Promise<boolean>,
   getUserBookings: (user: AuthenticatedUser) => Promise<Booking[] | null>,
-  clearError: () => void
+  clearError: () => void,
+  updateBooking: (user: AuthenticatedUser) => Promise<Booking | null>
 }
 
 const defaultState: BookingContextType = {
+  userBookings: [],
   currentlyEditing: null,
   bookingRequest: null,
   error: null,
@@ -27,7 +33,8 @@ const defaultState: BookingContextType = {
   resetRequest: () => {},
   postBooking: async (user) => {return false},
   getUserBookings: async () => {return null},
-  clearError: () => {}
+  clearError: () => {},
+  updateBooking: async (user) => {return null}
 }
 
 const BookingContext = createContext<BookingContextType>(defaultState)
@@ -37,7 +44,26 @@ const BookingProvider = ({ children }: PropsWithChildren) => {
   const [currentlyEditing, setCurrentlyEditing] = useState<Booking | null>(defaultState.currentlyEditing)
   const [bookingRequest, setBookingRequest] = useState<BookingRequest | null>(defaultState.bookingRequest)
   const [userBookings, setUserBookings] = useState<Booking[]>([])
+  const [updatedBooking, setUpdatedBooking] = useState<Booking | null>()
   const [error, setError] = useState<string | null>(defaultState.error)
+  const {user} = useUser()
+
+  useEffect(() => {
+    const fetchBookings = async () => {
+      try {
+        if (user && user) {
+          const response = await getBookings(user as AuthenticatedUser);
+          if (response && Array.isArray(response)) {
+            setUserBookings(response);
+          }
+        }
+      } catch (error) {
+        setError('Failed to fetch bookings'); // Set error state if fetching fails
+      }
+    };
+
+    fetchBookings();
+  }, [user])
 
   const setEditing = async (booking: Booking | null) => {
     setCurrentlyEditing(booking)
@@ -114,8 +140,23 @@ const BookingProvider = ({ children }: PropsWithChildren) => {
     setError('')
   }
 
+  const updateBooking = async (user: AuthenticatedUser): Promise<Booking | null> => {
+    if(bookingRequest && currentlyEditing?._id){
+      
+      
+      const response = await editBooking(currentlyEditing?._id, user, bookingRequest)
+      if(response._id){
+        setUpdatedBooking(response)
+        return response as Booking
+      }
+      return null
+    }
+    return null
+    
+  }
+
   return (
-    <BookingContext.Provider value={{ currentlyEditing, bookingRequest, error, setEditing, createRequest, changePaymentMethod, resetRequest, postBooking, getUserBookings, clearError }} >
+    <BookingContext.Provider value={{userBookings, currentlyEditing, bookingRequest, error, setEditing, createRequest, changePaymentMethod, resetRequest, postBooking, getUserBookings, clearError, updateBooking }} >
       {children}
     </BookingContext.Provider>
   )
