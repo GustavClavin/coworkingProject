@@ -733,6 +733,7 @@ form {
   align-self: center;
   width: 100%;
   max-width: 560px;
+  padding-bottom: 2rem;
 }
 form p, form h1, form span, form button {
   text-align: center;

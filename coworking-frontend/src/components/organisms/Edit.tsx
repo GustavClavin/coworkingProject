@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom"
 
 const Edit = () => {
     const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
-    const { bookingRequest, currentlyEditing, updateBooking, resetRequest } = useBooking()
+    const { bookingRequest, currentlyEditing, updateBooking, resetRequest, cancelBooking } = useBooking()
     const { user } = useUser()
     const { closeModal, stopEdit } = useModal()
     const navigate = useNavigate()
@@ -40,7 +40,17 @@ const Edit = () => {
           }
     }
     const handleCancel = async () => {
+      if(user && currentlyEditing?._id){
+        const success = await cancelBooking(user)
+        if(success){
+          closeModal()
+          stopEdit()
+          window.location.reload()
+        }else{
+          console.log('deleteBooking failed')
 
+        }
+      }
     }
 
 

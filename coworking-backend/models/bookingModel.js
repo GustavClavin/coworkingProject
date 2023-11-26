@@ -85,16 +85,14 @@ exports.deleteBooking = async (req, res) => {
         }
 
         console.log(target)
-        console.log('↓ ↓ ↓ ↓ ↓ ↓ ↓')
-        console.log('↓ ↓ ↓ ↓ ↓ ↓ ↓')
 
-        await Booking.findOneAndDelete(req.body._id)
+        await Booking.findOneAndDelete({_id: req.body._id})
         res.status(200).json({
             message: 'deleted'
         })
     } catch (error) {
         res.status(500).json({
-            message: 'Could not update item'
+            message: 'Could not delete item'
         })
     }
 }

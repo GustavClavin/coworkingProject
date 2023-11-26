@@ -1,6 +1,6 @@
 import { createContext, PropsWithChildren, useContext, useEffect, useState } from "react"
 import { AuthenticatedUser, Booking, BookingRequest, PaymentMethod, Price, ValuePiece } from "../types/types"
-import { createBooking, editBooking, getBookings } from "../helpers/apiCalls"
+import { createBooking, deleteBooking, editBooking, getBookings } from "../helpers/apiCalls"
 import { useCowork } from "./CoworkContext"
 import { useUser } from "./UserContext"
 
@@ -19,7 +19,8 @@ interface BookingContextType {
   postBooking: (user: AuthenticatedUser) => Promise<boolean>,
   getUserBookings: (user: AuthenticatedUser) => Promise<Booking[] | null>,
   clearError: () => void,
-  updateBooking: (user: AuthenticatedUser) => Promise<Booking | null>
+  updateBooking: (user: AuthenticatedUser) => Promise<Booking | null>,
+  cancelBooking: (user: AuthenticatedUser) => Promise<boolean>
 }
 
 const defaultState: BookingContextType = {
@@ -34,7 +35,8 @@ const defaultState: BookingContextType = {
   postBooking: async (user) => {return false},
   getUserBookings: async () => {return null},
   clearError: () => {},
-  updateBooking: async (user) => {return null}
+  updateBooking: async (user) => {return null},
+  cancelBooking: async (user) => {return false},
 }
 
 const BookingContext = createContext<BookingContextType>(defaultState)
@@ -155,8 +157,19 @@ const BookingProvider = ({ children }: PropsWithChildren) => {
     
   }
 
+  const cancelBooking = async (user: AuthenticatedUser): Promise<boolean> => {
+    if(currentlyEditing?._id){
+      const response = await deleteBooking(currentlyEditing?._id, user)
+      if(response.message === 'deleted'){
+        return true
+      }
+    }
+
+    return false
+  }
+
   return (
-    <BookingContext.Provider value={{userBookings, currentlyEditing, bookingRequest, error, setEditing, createRequest, changePaymentMethod, resetRequest, postBooking, getUserBookings, clearError, updateBooking }} >
+    <BookingContext.Provider value={{userBookings, currentlyEditing, bookingRequest, error, setEditing, createRequest, changePaymentMethod, resetRequest, postBooking, getUserBookings, clearError, updateBooking, cancelBooking }} >
       {children}
     </BookingContext.Provider>
   )

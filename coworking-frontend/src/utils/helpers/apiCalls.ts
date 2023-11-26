@@ -208,6 +208,8 @@ export const editBooking = async (_id: ObjectId, user: AuthenticatedUser, bookin
 }
 
 export const deleteBooking = async (_id: ObjectId, user: AuthenticatedUser) => {
+    console.log(_id, user)
+    console.log(JSON.stringify(_id))
     try {
         const response = await fetch(BASE_URL + 'bookings', {
             method: 'DELETE',
@@ -215,7 +217,7 @@ export const deleteBooking = async (_id: ObjectId, user: AuthenticatedUser) => {
                 'Authorization': `Bearer ${user.token}`,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(_id)
+            body: JSON.stringify({_id})
         })
 
         const jsonRes = await response.json()
