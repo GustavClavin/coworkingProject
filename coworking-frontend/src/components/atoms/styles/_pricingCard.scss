@@ -5,4 +5,11 @@
     background-color: $white;
     border-radius: 0 .5rem 0 .5rem;
     padding: 0 1rem;
+    white-space: nowrap;
+}
+
+@media screen and (max-width: 1265px) {
+    .pricingCard{
+        padding: 0 .25rem;
+    }
 }
